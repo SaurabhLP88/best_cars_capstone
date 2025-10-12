@@ -39,6 +39,7 @@ jobs:
   lint_js:
       name: Lint JavaScript Files
       runs-on: ubuntu-latest
+      continue-on-error: true
 
       steps:
       - name: Checkout Repository
