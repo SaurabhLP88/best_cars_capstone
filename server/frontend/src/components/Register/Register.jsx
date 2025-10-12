@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import Header from '../Header/Header';
 
 import "./Register.css";
-import user_icon from "../assets/person.png"
-import email_icon from "../assets/email.png"
-import password_icon from "../assets/password.png"
-import close_icon from "../assets/close.png"
+import user_icon from "../assets/person.png";
+import email_icon from "../assets/email.png";
+import password_icon from "../assets/password.png";
+import close_icon from "../assets/close.png";
 
 const Register = () => {
 // State variables for form inputs
@@ -19,7 +19,7 @@ const Register = () => {
 // Redirect to home
   const gohome = ()=> {
     window.location.href = window.location.origin;
-  }
+  };
 
 // Handle form submission
   const register = async (e) => {
@@ -62,7 +62,7 @@ const Register = () => {
       <div className="header" style={{display: "flex",flexDirection: "row", justifyContent: "space-between"}}>
           <span className="text" style={{flexGrow:"1"}}>SignUp</span> 
           <div style={{display: "flex",flexDirection: "row", justifySelf: "end", alignSelf: "start" }}>
-          <a href="/" onClick={()=>{gohome()}} style={{justifyContent: "space-between", alignItems:"flex-end"}}>
+          <a href="/" onClick={()=>{gohome();}} style={{justifyContent: "space-between", alignItems:"flex-end"}}>
             <img style={{width:"1cm"}} src={close_icon} alt="X"/>
           </a>
           </div>
@@ -102,7 +102,7 @@ const Register = () => {
       </form>
       </div>
       </div>
-  )
-}
+  );
+};
 
 export default Register;

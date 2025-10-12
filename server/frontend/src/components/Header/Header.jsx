@@ -16,25 +16,25 @@ const Header = () => {
       sessionStorage.removeItem('username');
       window.location.href = window.location.origin;
       window.location.reload();
-      alert("Logging out "+username+"...")
+      alert("Logging out "+username+"...");
     }
     else {
-      alert("The user could not be logged out.")
+      alert("The user could not be logged out.");
     }
   };
     
 //The default home page items are the login details panel
-let home_page_items =  <div></div>
+let home_page_items =  <div></div>;
 
 //Gets the username in the current session
-let curr_user = sessionStorage.getItem('username')
+let curr_user = sessionStorage.getItem('username');
 
 //If the user is logged in, show the username and logout option on home page
 if ( curr_user !== null &&  curr_user !== "") {
     home_page_items = <div className="input_panel">
       <text className='username'>{sessionStorage.getItem("username")}</text>
     <a className="nav_item" href="/djangoapp/logout" onClick={logout}>Logout</a>
-  </div>
+  </div>;
 }
     return (
         <div>
@@ -65,7 +65,7 @@ if ( curr_user !== null &&  curr_user !== "") {
             </div>
           </nav>
         </div>
-    )
-}
+    );
+};
 
-export default Header
+export default Header;
