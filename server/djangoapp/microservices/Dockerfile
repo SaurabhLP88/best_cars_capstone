@@ -1,10 +1,19 @@
-FROM python:3.9.18-slim-bookworm
+FROM python:3.9-slim
 
+WORKDIR /app
 
-WORKDIR /python-docker
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+# Download NLTK data (VADER lexicon)
+RUN python -m nltk.downloader vader_lexicon
+
 COPY . .
-RUN ls
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+
+EXPOSE 5000
+
+ENV FLASK_APP=app.py
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV PYTHONUNBUFFERED=1
+
+CMD ["flask", "run"]
