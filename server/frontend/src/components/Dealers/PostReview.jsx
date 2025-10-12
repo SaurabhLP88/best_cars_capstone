@@ -28,7 +28,7 @@ const PostReview = () => {
       name = sessionStorage.getItem("username");
     }
     if(!model || review === "" || date === "" || year === "" || model === "") {
-      alert("All details are mandatory")
+      alert("All details are mandatory");
       return;
     }
 
@@ -61,7 +61,7 @@ const PostReview = () => {
       window.location.href = window.location.origin+"/dealer/"+id;
   }
 
-  }
+  };
   const get_dealer = async ()=>{
     const res = await fetch(dealer_url, {
       method: "GET"
@@ -69,11 +69,11 @@ const PostReview = () => {
     const retobj = await res.json();
     
     if(retobj.status === 200) {
-      let dealerobjs = Array.from(retobj.dealer)
+      let dealerobjs = Array.from(retobj.dealer);
       if(dealerobjs.length > 0)
-        setDealer(dealerobjs[0])
+        setDealer(dealerobjs[0]);
     }
-  }
+  };
 
   const get_cars = async ()=>{
     const res = await fetch(carmodels_url, {
@@ -81,9 +81,9 @@ const PostReview = () => {
     });
     const retobj = await res.json();
     
-    let carmodelsarr = Array.from(retobj.CarModels)
-    setCarmodels(carmodelsarr)
-  }
+    let carmodelsarr = Array.from(retobj.CarModels);
+    setCarmodels(carmodelsarr);
+  };
   useEffect(() => {
     get_dealer();
     get_cars();
@@ -118,6 +118,6 @@ const PostReview = () => {
       </div>
     </div>
     </div>
-  )
-}
-export default PostReview
+  );
+};
+export default PostReview;

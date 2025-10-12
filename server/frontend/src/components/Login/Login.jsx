@@ -7,7 +7,7 @@ const Login = ({ onClose }) => {
 
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [open,setOpen] = useState(true)
+  const [open,setOpen] = useState(true);
 
   let login_url = window.location.origin+"/djangoapp/login";
 
@@ -31,7 +31,7 @@ const Login = ({ onClose }) => {
         setOpen(false);        
     }
     else {
-      alert("The user could not be authenticated.")
+      alert("The user could not be authenticated.");
     }
 };
 
