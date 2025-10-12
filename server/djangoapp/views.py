@@ -69,7 +69,13 @@ def registration(request):
     # If it is a new user
     if not username_exist:
         # Create user in auth_user table
-        user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,password=password, email=email)
+        user = User.objects.create_user(
+            username=username, 
+            first_name=first_name, 
+            last_name=last_name,
+            password=password, 
+            email=email
+        )
         # Login the user and redirect to list page
         login(request, user)
         data = {"userName": username, "status": "Authenticated"}
@@ -87,7 +93,10 @@ def get_cars(request):
     car_models = CarModel.objects.select_related('car_make')
     cars = []
     for car_model in car_models:
-        cars.append({"CarModel": car_model.name, "CarMake": car_model.car_make.name})
+        cars.append({
+            "CarModel": car_model.name,
+            "CarMake": car_model.car_make.name
+        })
     return JsonResponse({"CarModels": cars})
 
 
@@ -113,11 +122,13 @@ def get_dealer_reviews(request, dealer_id):
         endpoint = f"/fetchReviews/dealer/{dealer_id}"
         reviews = get_request(endpoint) or []  # ensure reviews is a list
         for review_detail in reviews:
-            response = analyze_review_sentiments(review_detail.get('review', ''))
+            response = analyze_review_sentiments(
+                review_detail.get('review', '')
+            )
             if response and 'sentiment' in response:
                 review_detail['sentiment'] = response['sentiment']
             else:
-                review_detail['sentiment'] = "Unknown"  # default if analysis fails
+                review_detail['sentiment'] = "Unknown"
         return JsonResponse({"status": 200, "reviews": reviews})
     else:
         return JsonResponse({"status": 400, "message": "Bad Request"})
@@ -143,6 +154,9 @@ def add_review(request):
             response = post_review(data)
             return JsonResponse({"status": 200})
         except:
-            return JsonResponse({"status": 401, "message": "Error in posting review"})
+            return JsonResponse({
+                "status": 401,
+                "message": "Error in posting review"
+            })
     else:
         return JsonResponse({"status": 403, "message": "Unauthorized"})
