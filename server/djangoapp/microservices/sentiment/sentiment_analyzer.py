@@ -8,6 +8,7 @@ nltk.download('vader_lexicon')
 app = Flask(__name__)
 sia = SentimentIntensityAnalyzer()
 
+
 def senti_analyzer(text):
     score = sia.polarity_scores(text)
     compound = score['compound']
@@ -19,11 +20,17 @@ def senti_analyzer(text):
         sentiment = 'neutral'
     return {"sentiment": sentiment, "score": compound}
 
+
 # Flask route
 @app.route('/analyze/<text>', methods=['GET'])
 def analyze(text):
     result = senti_analyzer(text)
-    return jsonify({"text": text, "sentiment": result['sentiment'], "score": result['score']})
+    return jsonify({
+        "text": text,
+        "sentiment": result['sentiment'],
+        "score": result['score']
+    })
+
 
 if __name__ == "__main__":
     # Make Flask accessible from outside the container
