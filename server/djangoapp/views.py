@@ -1,12 +1,12 @@
 # Uncomment the required imports before adding the code
 
-from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
+# from django.shortcuts import render
+from django.http import JsonResponse  # HttpResponseRedirect, HttpResponse,
 from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404, render, redirect
+# from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import logout
-from django.contrib import messages
-from datetime import datetime
+# from django.contrib import messages
+# from datetime import datetime
 
 from django.contrib.auth import login, authenticate
 import logging
@@ -14,7 +14,7 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from .models import CarMake, CarModel
 from .populate import initiate
-from .restapis import get_request, analyze_review_sentiments, post_review
+from .restapis import get_request, analyze_review_sentiments  #, post_review
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -42,8 +42,8 @@ def login_user(request):
 
 def logout_request(request):
     # Create a `logout_request` view to handle sign out request
-    logout(request) # Terminate user session
-    data = {"userName": ""} # Return empty username
+    logout(request)  # Terminate user session
+    data = {"userName": ""}  # Return empty username
     return JsonResponse(data)
 
 
