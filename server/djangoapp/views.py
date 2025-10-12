@@ -23,7 +23,6 @@ logger = logging.getLogger(__name__)
 # Create your views here.
 
 
-
 @csrf_exempt
 def login_user(request):
     # Create a `login_request` view to handle sign in request
@@ -94,7 +93,7 @@ def get_cars(request):
     # # Update the `get_cars` view to render the index page with
     count = CarMake.objects.filter().count()
     print(count)
-    if(count == 0):
+    if count == 0:
         initiate()
     car_models = CarModel.objects.select_related('car_make')
     cars = []
@@ -109,7 +108,7 @@ def get_cars(request):
 def get_dealerships(request, state="All"):
     # # Update the `get_dealerships` view to render the index page with
     # a list of dealerships
-    if(state == "All"):
+    if state == "All":
         endpoint = "/fetchDealers"
     else:
         endpoint = "/fetchDealers/"+state
