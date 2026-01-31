@@ -1,0 +1,33 @@
+
+services:
+  mongo:
+    image: mongo:6
+    container_name: cars_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: always
+
+  node-api:
+    build: ./database
+    container_name: cars_api
+    ports:
+      - "3030:3030"
+    depends_on:
+      - mongo
+    restart: always
+
+  django-proxy:
+    build: .
+    container_name: cars_django
+    ports:
+      - "8000:8000"
+    depends_on:
+      - node-api
+    restart: always
+    env_file:
+      - djangoapp/.env   
+
+volumes:
+  mongo_data:

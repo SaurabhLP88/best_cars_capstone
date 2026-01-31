@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Frontend (React)
+server/frontend/node_modules/
+server/frontend/build/
+server/frontend/coverage/
+
+# Frontend env files
+server/frontend/.env*
