@@ -1,125 +1,1796 @@
-img{
-  width: 60%;
-  align-self: center;
+/*
+Theme Name: Prantokon
+Version: 1.0
+Author: Jsoft
+Description: Responsive HTML5 / CSS3 One-page Landing App Template.
+*/
+
+/**
+ *** CSS Indexing ***
+ * THEME DEFAULT CSS
+ * RESET CSS
+ * HEADER AREA CSS
+ * HERO AREA CSS
+ * ABOUT AREA CSS
+ * FEATURE AREA CSS
+ * SHOWCASE AREA CSS
+ * VIDEO AREA CSS
+ * SCREENSHOT AREA CSS
+ * PRICING AREA CSS
+ * TESTIMONIAL AREA CSS
+ * COUNTERUP AREA CSS
+ * TEAM AREA CSS
+ * DOWNLOAD AREA CSS
+ * BLOG AREA CSS
+ * MAP AND FOOTER AREA CSS
+ * SCROLL-TO-TOP AREA CSS
+ * INDEX SLIDER PAGE CSS
+ * INDEX VIDEO PAGE CSS
+ * BLOG PAGE CSS
+ * BLOG DETAILS PAGE CSS
+ * PRELOADER CSS
+**/
+
+/*----------------------------------
+--------- THEME DEFAULT CSS --------
+----------------------------------*/
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,900');
+html {
+  scroll-behavior: smooth;
+}
+body {
+    line-height: 24px;
+    font-size: 14px;
+    color: #666666;
+	font-family: 'Poppins', sans-serif;
+    font-weight: 400;
 }
 
-.card{
-  border: rgb(103, 102, 105) 3px solid;
-  display: flex;  
-  flex-direction: column;
-  margin-left:5%;
-  margin-right:5%;
-  margin-top: 1%;
-  margin-bottom: 1%;
+/*----------------------------
+---------- RESET CSS ---------
+----------------------------*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 500;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0px;
+}
+h1 {
+    font-size: 48px;
+}
+h2 {
+    font-size: 30px;
+	color: #232323;
+}
+h4 {
+    font-size: 18px;
+	color: #232323;
+}
+h6 {
+    font-size: 14px;
+	color: #232323;
+}
+h5 {
+	color: #232323;
+}
+a {
+    transition: 0.6s;
+}
+a,
+a:hover {
+    color: #0074da;
+}
+a:hover { 
+    text-decoration: underline;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+iframe {
+    width: 100%;
+    border: none;
+}
+a,
+a:hover,
+a:focus,
+a:active,
+button:focus {
+    border: none;
+    outline: 0;
+}
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+ol {
+    margin-bottom: 0;
+}
+select:focus,
+select:active {
+    box-shadow: none;
+    border: 0;
+    outline: 0
+}
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+    outline: none;
+}
+button{
+    cursor: pointer;
+}
+textarea {
+	height: 120px;
+}
+input[type="text"],
+input[type="submit"],
+button[type="submit"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+input[type="search"],
+input[type="password"],
+input[type="number"],
+textarea {
+    background: transparent;
+    width: 100%;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+}
+input[type="submit"],
+button[type="submit"] {
+    width: auto;
+    color: #666;
+    padding: 4px 15px;
+}
+textarea:focus {
+    outline: none !important;
+    box-shadow: none !important;
 }
 
-.row{
-  display: flex;  
-  flex: 1;
-  flex-direction: row;
-  margin: auto;
-  margin-top: 1%;
-  justify-content: center;
-  padding:20px;
+.text-blue1 {
+    color: #0074da !important;
 }
 
-.container{
-  justify-content: center;
+.sec-title {
+    text-align: center;
+    margin: 0 0 40px;
 }
-.details{
-  font-size: 20px;
-  color: rgb(97, 64, 128);
-  padding:20px;
+.sec-title h2 {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    top: -6px;
+}
+.sec-title h2 .sec-title-border {
+    width: 130px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-top: 2px solid #222;
+    right: 0;
+    height: 0;
+    margin: auto;
+}
+.pricing-area .sec-title h2 .sec-title-border,
+.download-area .sec-title h2 .sec-title-border,
+.light-area .sec-title h2 .sec-title-border {
+    border-color: #fff;
+}
+.pricing-area .sec-title h2 .sec-title-border span::before,
+.download-area .sec-title h2 .sec-title-border span::before,
+.light-area .sec-title h2 .sec-title-border span::before {
+    background-color: #fff;
+}
+.sec-title h2 .sec-title-border span {
+    width: 9px;
+    height: 9px;
+    position: relative;
+    display: inline-block;
+    margin: 0 1px;
+    bottom: 23.3px;
+}
+.sec-title h2 .sec-title-border span::before {
+    background: #222;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    transform: rotate(45deg);
+}
+.mt-100 {
+    margin-top: 100px;
+}
+.mt-30 {
+    margin-top: 30px;
+}
+.ptb-100 {
+    padding: 100px 0;
+}
+.ptb-90 {
+    padding: 90px 0;
+}
+.owl-nav div {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    width: 35px;
+    background: #fff;
+    color: #000;
+    height: 35px;
+    line-height: 36px;
+    border-radius: 100%;
+    text-align: center;
+    font-size: 29px;
+    transition: 0.4s;
+    margin-top: -60px;
+}
+.owl-nav div:hover {
+    background: #000;
+    color: #fff;
+}
+.owl-nav div.owl-next {
+    right: 20px;
+    left: auto;
+}
+.owl-dots {
+    text-align: center;
+    margin-top: 30px;
+}
+.owl-dot {
+    width: 10px;
+    height: 10px;
+    border: 1px solid #0074da;
+    border-radius: 10px;
+    display: inline-block;
+    margin: 0 3px;
+}
+.owl-dot.active {
+    background: #0074da;
+}
+.display-table {
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+.display-tablecell {
+    display: table-cell;
+    vertical-align: middle;
+}
+.header.sticky .mainmenu li a.appao-btn ,
+.mainmenu li a.appao-btn,
+.appao-btn {
+    color: #fff;
+    display: inline-block;
+    text-transform: uppercase;
+	cursor: pointer;
+	font-weight: 500; margin: 0; border: none; text-decoration: none;
+}
+.header.sticky .mainmenu li a.appao-btn:hover ,
+.mainmenu li a.appao-btn:hover,
+.appao-btn:hover {
+    color: #eee; border: none; text-decoration: none;
+}
+.appao-btn2 {
+    border: 1px solid transparent; padding: 10px 25px; color: #fff; display: inline-block; text-decoration: none;
+	border-radius: 25px;
+	background: #000529; /* Old browsers */
+	background-image: -moz-linear-gradient(left, #000529 1%, #002055 24%, #005db5 67%, #0074d9 100%); /* FF3.6-15 */
+	background-image: -webkit-linear-gradient(left, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%); /* Chrome10-25,Safari5.1-6 */
+	background-image: linear-gradient(to right, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+}
+.appao-btn2:hover {
+    border: 1px solid #000529; text-decoration: none;
+	background: transparent;
+	background-image: none;
+    color: #000529;
+}
+.appao-btn3 {
+    border: 1px solid #fff; padding: 10px 25px; color: #fff;
+    border-radius: 25px;
+    background: transparent; display: inline-block; text-decoration: none;
+}
+.appao-btn3:hover {
+    border: 1px solid #fff; text-decoration: none;
+    background: #fff;
+    color: #333;
 }
 
-.title{
-  font-size: 20px;
-  background-color: rgb(97, 64, 128);
-  color: white;
-  text-align: center;
-  margin:20px;
-  padding:5px;
+.flexbox-center {
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+input::-webkit-input-placeholder {
+    color: #666;
 }
 
-.homepage_links{
-  color:  rgb(97, 64, 128);
-  padding: 25%;
-  font-size: larger;
-  }
+/*--------------------------------------
+-------- HEADER AREA CSS START --------
+---------------------------------------*/
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+	transition: all 0.4s;
+    width: 100%;
+    z-index: 999;
+	padding: 18px 0;
+}
+.header-top {
+    border-bottom: 1px solid #fff;
+    padding-bottom: 5px; margin-bottom: 5px; transition: all 0.3s ease-in-out 0s; overflow: hidden; max-height: 100px;
+}
+.header.sticky .header-top {
+    border-bottom: none;
+    padding-bottom: 0; margin-bottom: 0; max-height: 0;;
+}
 
-.loginlink{
+.mainmenu {
+    text-align: right;
+}
+.mainmenu li {
+    display: inline-block;
+}
+.mainmenu li a {
+    display: inline-block;
+    color: #fff;
+    position: relative;
+    padding: 5px 16px;
+	margin: 0 3px;
+    border: 1px solid transparent; text-decoration: none;
+}
+
+.mainmenu li {
+  position: relative;
+}
+
+/* Hide submenu by default */
+.submenu {
+  position: absolute;
+  top: 100%;
+  right: 0px; top: 100%;
+  background: #fff;
+  display: none;
+  min-width: 240px;
+  padding: 10px 18px;
+  margin: 0;
+  z-index: 999; border-radius: 20px; overflow: hidden; text-align: left; border: 1px solid #0074da;
+}
+
+/* Show on hover */
+.has-submenu:hover .submenu {
+  display: block;
+}
+
+/* Submenu items */
+.submenu li {
+  display: block; border-bottom: 1px solid #ccc;
+}
+
+.submenu li a {
+  display: block;
+  padding: 8px 0px;
+  color: #0074d9; margin: 0;
+}
+.submenu li a i { position: relative;  transition: all 0.3s ease-in-out 0s; left: 0;}
+
+.submenu li:last-child {
+  border-bottom: none;
+}
+
+.submenu li a:hover {
+  color: #333;
+}
+.submenu li a:hover i {
+  left: 5px;
+}
+
+
+.slicknav_menu {
+	padding: 0;
+    background: transparent;
+}
+.slicknav_menu a.active,
+.mainmenu ul li a:hover,
+.mainmenu ul li a.active {
+    border: 1px solid #fff;
+}
+.mainmenu {
+    display: block;
+}
+.slicknav_menu {
+	display: none;
+}
+.header.sticky {
+	border-bottom: 1px solid #fff;
+	background: #000529; /* Old browsers */
+	background: -moz-linear-gradient(left, #000529 1%, #002055 24%, #005db5 67%, #0074d9 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+}
+.header.sticky {
+	padding: 10px 0;
+}
+.mainmenu li a.appao-btn {
+	/*margin-left: 55px;*/
+}
+/*--------------------------------------
+--------- HEADER AREA CSS END ---------
+---------------------------------------*/
+
+/*--------------------------------------
+-------- HERO AREA CSS START --------
+---------------------------------------*/
+.hero-area {
+    padding-top: 140px;
+	z-index: 1;
+	position: relative;
+    background-image: url(../images/hero-area.jpg);
+    background-repeat: repeat;
+    background-position: center;
+	background-attachment: fixed;
+    background-size: cover;
+	overflow: hidden; height: 100vh;
+}
+.hero-area::before {
+	content: "";
+	top: 0;
+	left: 0;
+    opacity: 0.85;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
+	position: absolute;
+	background: #000529; /* Old browsers */
+	background: -moz-linear-gradient(left, #000529 1%, #002055 24%, #005db5 67%, #0074d9 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+}
+.hero-area-overlay {
+    min-height: calc(100vh - 10rem); display: flex; align-items: center; flex-direction: column; justify-content: center;
+}
+.hero-area-content {
+    color: #fff;
+	padding: 0; /*80px 0 170px;*/
+}
+.hero-area-content h1 {
+    color: #fff;
+}
+.hero-area-content p {
+    margin: 28px 0 25px;
+}
+.hero-area-content .appao-btn {
+    margin-top: 15px;
+    margin-right: 15px;
+}
+.hand-mockup {
+    /*position: absolute;
+    bottom: -2px;*/
+    max-width: 100%;
+}
+/*------------------------------------
+--------- HERO AREA CSS END ---------
+------------------------------------*/
+
+/*--------------------------------------
+-------- ABOUT AREA CSS START --------
+---------------------------------------*/
+.about-area {
+	text-align: center;
+}
+.single-about-box {
+	padding: 25px;
+    transition: all 0.4s;
+}
+.single-about-box i::before {
+    color: #0074da;
+    font-size: 40px;
+    transition: all 0.4s;
+    display: block;
+}
+.single-about-box.active,
+.single-about-box:hover {
+	box-shadow: 0 0 5px #ccc;
+}
+.single-about-box.active i::before ,
+.single-about-box:hover i::before {
+    color: #000;
+}
+.single-about-box h4 {
+	margin: 25px 0 15px;
+}
+/*--------------------------------------
+---------- ABOUT AREA CSS END ----------
+---------------------------------------*/
+
+/*--------------------------------------
+-------- FEATURE AREA CSS START --------
+---------------------------------------*/
+.feature-area {
+	z-index: 1;
+	position: relative;
+    /*background-image: url(../images/choose-car-bg-01.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;*/
+}
+.feature-area::before {
+	content: "";
+	top: 0;
+	left: 0;
+    opacity: 0.75;
+	right: 0;
+	bottom: 0;
+	background: #000529; /* Old browsers */
+	background: -moz-linear-gradient(left, #000529 1%, #002055 24%, #005db5 67%, #0074d9 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+	z-index: -1;
+	position: absolute;
+}
+.single-feature-box h4 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+.single-feature-box li {
+    margin-bottom: 45px;
+    display: flex;
+}
+.single-feature-box li:last-child {
+    margin-bottom: 0;
+}
+.feature-box-info {
+    flex: 5;
+}
+.feature-box-icon {
+    flex: 1;
+	font-size: 20px;
+	transition: all 0.4s;
+}
+.single-feature-box li:hover .feature-box-icon i::before {
+    border-radius: 0;
+}
+.single-feature-box h2,
+.single-feature-box h3,
+.single-feature-box h4,
+.single-feature-box {
+	color: #fff;
+}
+.feature-box-icon i::before {
+    border: 2px dashed #fff;
+    width: 40px;
+    display: inline-block;
+    height: 40px;
+    text-align: center;
+    line-height: 38px;
+    border-radius: 100%;
+	transition: all 0.4s;
+}
+/*--------------------------------------
+--------- FEATURE AREA CSS END ---------
+---------------------------------------*/
+
+/*--------------------------------------
+-------- SHOWCASE AREA CSS START -------
+---------------------------------------*/
+.showcase-area {
+	padding-bottom: 50px;
+}
+.single-showcase-box {
+	padding: 0; 
+}
+.single-showcase-box p {
+	margin: 20px 0 25px;
+}
+.single-showcase-box h4 {
+	font-size: 20px;
+}
+.single-showcase-image {
+	padding: 0; height: 3.5in; overflow: hidden;
+}
+.single-showcase-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.4s;
+}
+
+/*--------------------------------------
+--------- SHOWCASE AREA CSS END --------
+---------------------------------------*/
+
+/*--------------------------------------
+---------- VIDEO AREA CSS START --------
+---------------------------------------*/
+.video-area {
+    /*background-image: url(../images/watch-demo-01.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;*/
+    position: relative;
+    text-align: center;
+    z-index: 1;
+    color: #fff;
+}
+.video-area::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	background: #000529; /* Old browsers */
+	background: -moz-linear-gradient(left, #000529 1%, #002055 24%, #005db5 67%, #0074d9 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+    opacity: 0.45;
+    z-index: -1;
+}
+.video-popup button {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+.video-popup i {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    line-height: 80px;
+    font-size: 25px;
+    color: #000529;
+    border: 10px solid rgba(255,255,255,0.7);
+    border-radius: 50%;
+    transition: all 0.4s;
+    position: relative;
+    z-index: 1;
+}
+.video-popup i::before {
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+    border-radius: 50%;
+}
+.video-popup i:hover {
+    color: #fff;
+}
+.video-popup h1 {
+    margin-top: 30px; margin-bottom: 0; font-weight: 700;
+    line-height: 1.2; text-shadow: 0 0 5px #000;
+}
+.video-popup i:hover::before {
+    background: transparent;
+}
+
+.video-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
-
-.banner{
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex:1
+  z-index: 9999;
 }
 
-.form_panel {
-  padding:2%;
-  display: flex;
-  flex-direction: column;
-  border-radius: 50px;
-  text-align:center;
-  box-shadow: 2px 2px 2px 3px #999;
-  margin: auto;
-  min-width: 350px;
+.video-modal-content {
+  position: relative;
   width: 80%;
-  margin-top:3%
+  max-width: 1200px;
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.navitems{
-  display: flex;
-  flex-direction: row;
-  padding: 20px;
-  flex: 1;
-  justify-content: flex-start;
-  justify-self: center;
+.video-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fff;
+  border: none;
+  font-size: 18px;
+  padding: 5px 10px;
+  cursor: pointer;
+  z-index: 2;
 }
 
-.nav_item{
-  margin-left:15px;
-  font-size: 20px;
-  color: black;
-  align-self: center;
+/*--------------------------------------
+----------- VIDEO AREA CSS END ---------
+---------------------------------------*/
+
+/*--------------------------------------
+------ SCREENSHOT AREA CSS START -------
+---------------------------------------*/
+.screenshots-area .sec-title {
+    margin-bottom: 15px;
+}
+.screenshot-wrap .slick-list {
+	/*padding-bottom: 90px !important;*/
+	padding-top: 20px !important;
+}
+.screenshot-wrap .slick-slide {
+	z-index: 1; padding: 0 10px;
+}
+/*.screenshot-wrap .slick-active {
+	-webkit-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	transform: scale(1.1);
+	z-index: 2;
+	transition: all 0.3s ease-in 0s;
+}*/
+.screenshot-wrap .slick-center {
+	position: relative;
+	-webkit-transform: scale(1.25);
+	-ms-transform: scale(1.25);
+	transform: scale(1.25);
+	z-index: 3;
+	transition: all 0.3s ease-in 0s;
+}
+.screenshot-wrap img {
+	width: 100%;
+}
+.slick-dots {
+	text-align: center;
+	margin-top: 10px;
+}
+.slick-dots li.slick-active button {
+    background-color: #0074da;
+}
+.slick-dots li {
+    display: inline-block;
+}
+.slick-dots li button {
+    background: transparent;
+    border: 2px solid #0074da;
+    border-radius: 100%;
+    font-size: 0;
+    margin: 0 3px;
+    padding: 0;
+	cursor: pointer;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
 }
 
-.username{
-  font: 30px sans-serif;
-  color:black;
-  justify-content: 'flex-end';
-  align-self:flex-end;
-  vertical-align: middle;
+.single-logo {
+  padding: 10px;
+  display: flex !important;
+  justify-content: center; height: 150px;
 }
 
-.input_panel {
-  display: flex;
-  flex-direction: row;
-  padding: 20px;
-  flex: 1;
-  justify-content:flex-end;
-  align-items: flex-end;
-  vertical-align: middle;
+.single-logo img {
+  object-fit: contain;
 }
 
-.small_header{
-  font: 30px sans-serif;
-  color:black;
-  margin: .5cm;
+/*.screenshot-wrap .slick-current {
+    background-image: url(../images/screenshot/mockup.png);
+    background-size: 100% 100%;
+}
+.screenshot-wrap .slick-current img {
+    padding: 35px 20px 55px;
+}*/
+/*--------------------------------------
+-------- SCREENSHOT AREA CSS END -------
+---------------------------------------*/
+
+/*--------------------------------------
+-------- PRICING AREA CSS START --------
+---------------------------------------*/
+.pricing-area {
+    /*background-image: url(../images/latest-cars-01.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;*/
+    position: relative;
+    text-align: center;
+    z-index: 1;
+}
+.pricing-area::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	background: #000529; /* Old browsers */
+	background: -moz-linear-gradient(left, #000529 1%, #002055 24%, #005db5 67%, #0074d9 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+    opacity: 0.65;
+    z-index: -1;
+}
+.pricing-area .sec-title ,
+.pricing-area .sec-title h2,
+.light-area .sec-title,
+.light-area .sec-title h2 {
+	color: #fff;
+}
+.single-pricing-box {
+	background: #fff;
+	text-align: center;
+	transition: all 0.4s;
+}
+.pricing-top {
+    padding: 15px;
+}
+.pricing-top h4 {
+	font-weight: 400;
+}
+.pricing-top p {
+	font-style: italic;
+	font-weight: 500;
+}
+.price {
+    background-color: #666666;
+    padding: 15px;
+    color: #fff;
+	transition: all 0.4s;
+}
+.price-details {
+    padding: 25px 15px;
+}
+.price h1 {
+    position: relative;
+    padding-left: 13px;
+    display: inline-block;
+}
+.price h1 span {
+    font-size: 14px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 40px;
+}
+.price-details ul li {
+    /*max-width: 204px;*/
+    font-weight: 500;
+    padding-bottom: 8px;
+    margin: 0 0 15px;
+    border-bottom: 1px solid #666;
+}
+.price-details ul li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+.price-details .appao-btn {
+    padding: 5px 35px;
+	margin-top: 10px;
+	border: 2px solid #666;
+	color: #666;
+	border-radius: 30px;
+	transition: all 0.4s;
+}
+.single-pricing-box:hover .price {
+	background-color: #000529; /* Old browsers */
+	background-image: -moz-linear-gradient(left, #000529 1%, #002055 24%, #005db5 67%, #0074d9 100%); /* FF3.6-15 */
+	background-image: -webkit-linear-gradient(left, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%); /* Chrome10-25,Safari5.1-6 */
+	background-image: linear-gradient(to right, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+}
+.single-pricing-box:hover .appao-btn {
+    background-color: #000529;
+    background-image: -moz-linear-gradient(left, #000529 1%, #002055 24%, #005db5 67%, #0074d9 100%);
+    background-image: -webkit-linear-gradient(left, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+    background-image: linear-gradient(to right, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+    color: #fff;
+    border: 2px solid #005db5;
+}
+/*--------------------------------------
+--------- PRICING AREA CSS END ---------
+---------------------------------------*/
+
+/*--------------------------------------
+------ TESTIMONIAL AREA CSS START ------
+---------------------------------------*/
+.author-img {
+    width: 95px;
+    height: 95px;
+    border-radius: 100%;
+    margin: 5px auto;
+}
+.author-img img {
+    border-radius: 100%;
+    border: 2px solid #0074da;
+    box-shadow: 0 0 6px #0074da;
+}
+.single-testimonial-box {
+    text-align: center;
+}
+.single-testimonial-box p {
+    margin: 0 0 15px;
+}
+.single-testimonial-box h5 {
+    margin: 35px 0 15px;
+}
+.testimonial-thumb > div {
+    position: absolute;
+    top: 5px;
+    transform: scale(0.7);
+    left: 50%;
+    cursor: pointer;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    margin-left: -150px;
+    z-index: 1;
+}
+.testimonial-thumb > div.thumb-next {
+    left: auto;
+    right: 50%;
+    margin: 0 -150px 0 0;
+}
+.testimonial-thumb > div:hover {
+	opacity: 0.7;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+}
+/*--------------------------------------
+------- TESTIMONIAL AREA CSS END -------
+---------------------------------------*/
+
+/*--------------------------------------
+-------- COUNTERUP AREA CSS START --------
+---------------------------------------*/
+.counter-area {
+    /*background-image: url(../images/cars-stay-01.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+	background-attachment: fixed;*/
+    position: relative;
+    text-align: center;
+    z-index: 1;
+	color: #fff;
+	padding-top: 50px;
+}
+.counter-area::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	background: #000529; /* Old browsers */
+	background: -moz-linear-gradient(left, #000529 1%, #002055 24%, #005db5 67%, #0074d9 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+    opacity: 0.75;
+    z-index: -1;
+}
+.single-counter-box i::before {
+    background: #0861b5;
+    width: 120px;
+    display: block;
+    height: 120px;
+    line-height: 120px;
+    border-radius: 100%;
+    font-size: 50px;
+    margin: auto;
+    box-shadow: 0 8px 8px #020202;
+	border: 2px solid transparent;
+	transition: all 0.4s;
+}
+.single-counter-box h1 {
+	margin: 25px 0 10px;
+}
+.single-counter-box p {
+    font-size: 24px;
+    line-height: normal;
+}
+.single-counter-box {
+    margin-top: 40px;
+}
+.single-counter-box:hover i::before {
+	background: transparent;
+	border: 2px solid #fff;
+    box-shadow: none;
+}
+/*--------------------------------------
+-------- COUNTERUP AREA CSS END --------
+---------------------------------------*/
+
+/*--------------------------------------
+-------- TEAM AREA CSS START --------
+---------------------------------------*/
+.single-team-member {
+    text-align: center;
+    box-shadow: 0 2px 15px -5px #222;
+    transition: all 0.4s;
+}
+.team-member-info h4 {
+	font-size: 20px;
+}
+.team-member-info {
+    padding: 20px 10px;
+}
+.team-member-img {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+.team-member-icon {
+    position: absolute;
+    top: 0;
+	left: -100%;
+    height: 100%;
+    width: 100%;
+    transition: all 0.4s;
+}
+.team-member-img::before {
+    content: "";
+    background: #000529; /* Old browsers */
+    background: -moz-linear-gradient(left, #000529 1%, #002055 24%, #005db5 67%, #0074d9 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    transition: all 0.4s;
+    position: absolute;
+    opacity: 0.85;
+}
+.team-member-icon a {
+    color: #fff;
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	line-height: 30px;
+	border: 1px solid transparent; text-decoration: none;
+}
+.team-member-icon a:hover {
+	border: 1px solid #fff; text-decoration: none;
+}
+.single-team-member:hover .team-member-img::before {
+    width: 100%;
+}
+.single-team-member:hover .team-member-icon  {
+    left: 0;
+}
+/*--------------------------------------
+--------- TEAM AREA CSS END ---------
+---------------------------------------*/
+
+/*--------------------------------------
+-------- DOWNLOAD AREA CSS START --------
+---------------------------------------*/
+.test-parallax-bg {
+    object-position: center -5in !important;
+    /*transform: translateY(-120px) !important;*/
+}
+.download-area {
+    /*background-image: url(../images/test-drive-01.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;*/
+    position: relative;
+    text-align: center;
+    z-index: 1;
+}
+.download-area::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	background: #000529; /* Old browsers */
+	background: -moz-linear-gradient(left, #000529 1%, #002055 24%, #005db5 67%, #0074d9 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+    opacity: 0.85;
+    z-index: -1;
+}
+.download-area ,
+.download-area h1,
+.download-area h2,
+.download-area h3,
+.download-area h4,
+.download-area h5,
+.download-area h6,
+.download-area a {
+	color: #fff;
+}
+.download-area li {
+    display: inline-block;
+}
+.download-btn {
+    display: flex;
+    text-align: left;
+    margin: 0 25px;
+    padding: 3px 30px 5px;
+    border: 1px solid #fff;
+    border-radius: 50px; text-decoration: none;
+}
+.download-btn-icon {
+    flex: 1;
+    font-size: 36px;
+    margin-right: 15px;
+    line-height: 1;
+}
+.download-btn-text {
+    flex: 20;
+}
+.download-btn:hover {
+    border: 1px solid transparent;
+    box-shadow: 0 2px 8px #222;
+    background: #046bc8; text-decoration: none;
+}
+.counter-box {
+  background: #fff;
+  padding: 25px 5px;
+  border-radius: 10px;
+  transition: 0.3s;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05); margin-bottom: 15px;
 }
 
-.img_icon {
-  align-self: center;
-    width:40px;
-    background-color:#0C9;
-    color:#FFF;
-    border-radius:50px;
-    text-align:center;
-    box-shadow: 2px 2px 3px #999;  
+.counter-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.counter-box h2 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #0074d9;
+  margin-bottom: 5px;
+}
+
+.counter-box p {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+/*--------------------------------------
+--------- DOWNLOAD AREA CSS END ---------
+---------------------------------------*/
+
+/*--------------------------------------
+-------- BLOG AREA CSS START --------
+---------------------------------------*/
+p.form-message.error {
+    color: #a20202;
+}
+p.form-message.sucess {
+    color: #036b03;
+}
+.blog-area.blog-page {
+    padding: 90px 0 130px;
+}
+.single-post {
+    padding: 5px;
+    box-shadow: 0 2px 10px -2px #999;
+}
+.post-thumbnail {
+    overflow: hidden;
+}
+.single-post:hover img {
+    transform: scale(1.2);
+}
+.post-thumbnail img {
+    transition: all 0.4s;
+}
+.post-details {
+    padding: 25px 15px;
+}
+.post-author a,
+.post-author span {
+    margin-right: 10px;
+    font-size: 12px;
+}
+.post-author a i,
+.post-author span i {
+    margin-right: 5px;
+}
+.post-details a:hover,.post-details a h4:hover {
+    color: #0074da;
+}
+h4.post-title {
+    font-size: 20px;
+    margin: 18px 0;
+}
+h4.post-title a {
+    color: #232323;
+}
+/*--------------------------------------
+----------- BLOG AREA CSS END ----------
+---------------------------------------*/
+
+/*---------------------------------------
+----- MAP AND FOOTER AREA CSS START -----
+---------------------------------------*/
+.google-map {
+  width: 100%;
+  height: 450px;
+}
+.footer {
+    background-image: url(../images/footer-bg2.jpg);
+    background-size: cover;
+    background-position: center -164%;
+    background-repeat: repeat;
+    background-attachment: fixed;    
+    position: relative;
+    z-index: 999;
+    padding-bottom: 35px;
+}
+.footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	background: #000529; /* Old browsers */
+	background: -moz-linear-gradient(left, #000529 1%, #002055 24%, #005db5 67%, #0074d9 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+    opacity: 0.85;
+    z-index: -1;
+}
+.contact-form,
+.contact-address {
+    background: #fff;
+    padding: 40px 65px;
+    margin-bottom: 40px;
+    margin-top: 0;
+	border: 1px solid #ddd;
+}
+.contact-form input,
+.contact-form textarea,
+.contact-form button {
+    border: 1px solid #bbb;
+}
+.contact-form button {
+	transition: all 0.4s; 
+}
+.blog-reply button:hover ,
+.contact-form button:hover {
+    background: #0074da;
+    border-color: #0074da;
+    color: #fff;
+}
+.contact-form h4,.contact-address h4 {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+.contact-address li {
+    margin-bottom: 33px;
+    display: flex; justify-content: flex-start; align-items: center;
+}
+.contact-address li .contact-address-icon {
+    flex: 1;
+}
+.contact-address li .contact-address-info {
+    flex: 6;
+}
+.contact-address li .contact-address-icon i::before {
+    width: 38px;
+    height: 38px;
+    border-radius: 100%;
+    border: 1px solid #0074da;
+    display: block;
+    text-align: center;
+    line-height: 39px;
+    font-size: 18px;
+    transition: all 0.4s;
+}
+.contact-address li .contact-address-info a {
+    display: block;
+}
+.contact-address p {
+    margin-bottom: 45px;
+    padding-top: 10px;
+}
+.contact-address li:hover .contact-address-icon i::before {
+    background: #0074da;
+    color: #fff;
+}
+.subscribe-form {
+    margin: 40px 0 40px;
+    text-align: center;
+}
+.copyright-area {
+    text-align: center;
+}
+.copyright-area ul li {
+    display: inline-block;
+}
+.copyright-area ul li a {
+    width: 35px;
+    height: 35px;
+    color: #0074da;
+    background: #fff;
+    display: inline-block;
+    line-height: 35px;
+	font-size: 16px;
+    border-radius: 100%;
+    margin: 0 5px;
+}
+.copyright-area ul li a:hover {
+    background: #0074da;
+    color: #fff;
+}
+.copyright-area ul {
+    margin-bottom: 30px;
+}
+.copyright-area p {
+    color: #fff;
+}
+.copyright-area p a {
+    color: #fff;
+}
+.subscribe-form form {
+    position: relative;
+    max-width: 580px;
+    margin: auto;
+    z-index: 1;
+    border-radius: 30px;
+    display: inline-block;
+    width: 100%;
+    background: #fff;
+}
+.subscribe-form form input {
+    background: transparent;
+    border: 0;
+    width: 70%;
+    padding: 15px 30px;
+    float: left;
+    margin: 0;
+}
+.subscribe-form form button {
+    width: 29%;
+    padding: 15px 30px;
+    border: 0;
+    border-radius: 30px;
+    background: #0074da;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 500;
+    float: right;
+    margin: 0;
+    margin-right: -1%;
+}
+/*---------------------------------------
+------ MAP AND FOOTER AREA CSS END ------
+---------------------------------------*/
+
+/*--------------------------------------
+-------- SCROLL-TO-TOP CSS START --------
+---------------------------------------*/
+.scrollToTop {
+    width: 40px;
+    height: 40px;
+    line-height: 39px;
+    background: #000;
+    color: #fff;
+    position: fixed;
+    border: 1px solid #fff;
+    border-radius: 100%;
+    bottom: 15px;
+    right: 15px;
+    z-index: 999999;
+    text-align: center;
+	font-size: 18px;
+}
+.scrollToTop:hover {
+    background: #000529;
+    background: -moz-linear-gradient(left, #000529 1%, #002055 24%, #005db5 67%, #0074d9 100%);
+    background: -webkit-linear-gradient(left, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+    background: linear-gradient(to right, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+    border: 1px solid #fff;
+    color: #fff;
+}
+.scrollToTop:focus {
+    border: 1px solid #fff;
+    color: #fff;
+}
+/*--------------------------------------
+--------- SCROLL-TO-TOP CSS END ---------
+---------------------------------------*/
+
+/*--------------------------------------
+------ INDEX SLIDER PAGE CSS START -----
+---------------------------------------*/
+.hero-area-slider .owl-nav div {
+	opacity: 0;
+}
+.hero-area-slider:hover .owl-nav div {
+	opacity: 1;
+}
+.hero-area-single-slide h1,
+.hero-area-single-slide p,
+.hero-area-single-slide a.appao-btn {
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+}
+.hero-area-single-slide h1 {
+    -webkit-transform: translateX(-140px);
+    transform: translateX(-140px);
+    -webkit-transition: all .6s linear 0s;
+    transition: all .6s linear 0s;
+}
+.hero-area-single-slide p {
+    -webkit-transform: translateX(-140px);
+    transform: translateX(-140px);
+    -webkit-transition: all .15s linear 0s;
+    transition: all .15s linear 0s;
+}
+.hero-area-single-slide a.appao-btn {
+    -webkit-transform: translateY(120px);
+    transform: translateY(120px);
+    -webkit-transition: all .10s linear 0s;
+    transition: all .10s linear 0s;
+}
+.hero-area-single-slide img {
+    opacity: 0;
+    -webkit-transition: all .4s;
+    transition: all .4s;
+}
+.active .hero-area-single-slide h1,
+.active .hero-area-single-slide p,
+.active .hero-area-single-slide a.appao-btn {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+}
+.active .hero-area-single-slide h1 {
+    -webkit-transition: all 700ms linear 0s;
+    transition: all 700ms linear 0s;
+}
+.active .hero-area-single-slide p {
+    -webkit-transition: all 1500ms linear 0s;
+    transition: all 1500ms linear 0s;
+}
+.active .hero-area-single-slide a.appao-btn {
+    -webkit-transition: all 1300ms linear 0s;
+    transition: all 1300ms linear 0s;
+}
+.active .hero-area-single-slide img {
+    opacity: 1;
+}
+/*--------------------------------------
+------- INDEX SLIDER PAGE CSS END ------
+---------------------------------------*/
+
+/*--------------------------------------
+------ INDEX VIDEO PAGE CSS START -----
+---------------------------------------*/
+.hero-area > .mbYTP_wrapper {
+	z-index: -2 !important;
+}
+/*--------------------------------------
+------- INDEX VIDEO PAGE CSS END ------
+---------------------------------------*/
+
+/*--------------------------------------
+-------- Pre Loader Style START --------
+---------------------------------------*/
+#preloader {
+  position: fixed;
+  z-index: 99999999999;
+  top: 0;
+  left: 0;
+  overflow: visible;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,1) url("../images/loader.gif") no-repeat center center;
+  transition: opacity 0.5s ease; opacity: 0.8;
+}
+
+#preloader.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/*--------------------------------------
+--------- Pre Loader Style END ---------
+---------------------------------------*/
+
+/*--------------------------------------
+-------- BREADCRUMB CSS START --------
+---------------------------------------*/
+.breadcrumb-area {
+    text-align: center;
+}
+.hero-area.breadcrumb-area {
+    padding: 180px 0 100px; height: auto;
+}
+.hero-area.breadcrumb-area .hero-area-content {
+    padding: 0;
+}
+.breadcrumb-area ul li {
+    display: inline-block;
+	position: relative;
+}
+.breadcrumb-area ul li a {
+    color: #fff;
+	padding: 0 10px;
+}
+.breadcrumb-area ul li span {
+    padding: 0 10px;
+}
+.breadcrumb-area ul li::before {
+	position: absolute;
+	right: -3px;
+	top: 1px;
+	margin: auto;
+	content: "/";
+}
+.breadcrumb-area ul li:last-child::before {
+	content: "";
+}
+.breadcrumb-area ul {
+    margin-top: 10px;
+}
+.breadcrumb-area ul li a:hover {
+    color: #ccc;
+}
+/*--------------------------------------
+--------- BREADCRUMB CSS END ---------
+---------------------------------------*/
+
+/*--------------------------------------
+-------- BREADCRUMB CSS START --------
+---------------------------------------*/
+.blog-page .single-post {
+	margin-bottom: 40px;
+}
+.pagination {
+    text-align: center;
+    display: block;
+    margin-bottom: 40px;
+}
+.pagination li {
+    display: inline-block;
+}
+.pagination li a,
+.pagination li button {
+    border: none;
+    background-color: #000529;
+    background-image: -moz-linear-gradient(left, #000529 1%, #002055 24%, #005db5 67%, #0074d9 100%);
+    background-image: -webkit-linear-gradient(left, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+    background-image: linear-gradient(to right, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    font-size: 18px; text-decoration: none;
+}
+.pagination li a:hover,
+.pagination li button:hover {
+	background-image: none;
+    background-color: #005db5;
+    text-decoration: none;
+}
+.pagination li a.active,
+.pagination li button.active {
+    background-image: none;
+    background-color: #000; box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.9); position: relative; z-index: 9;
+}
+
+/*--------------------------------------
+--------- BREADCRUMB CSS END ---------
+---------------------------------------*/
+
+/*--------------------------------------
+-------- BLOG DETAILS CSS START --------
+---------------------------------------*/
+.blog-detail {
+	padding: 90px 0 155px;
+}
+.date-time li {
+    display: inline-block;
+    margin-right: 10px;
+}
+.blog-details .post-author {
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+.date-time li i {
+    color: #0074da;
+}
+.blog-details p {
+    margin-bottom: 12px;
+}
+.blog-reply {
+    padding-top: 40px;
+}
+.blog-reply button {
+	transition: all 0.4s;
+}
+.blog-reply textarea {
+	height: 150px;
+}
+.blog-reply h4 {
+    margin-bottom: 20px;
+}
+.sidebar {
+	padding-left: 30px;
+}
+.widget form input {
+    width: 78%;
+}
+.widget form button {
+    width: 20%;
+    float: right;
+	padding: 6px 0;
+    background: #000529;
+    color: #fff;
+    background: -moz-linear-gradient(left, #000529 1%, #002055 24%, #005db5 67%, #0074d9 100%);
+    background: -webkit-linear-gradient(left, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+    background: linear-gradient(to right, #000529 1%,#002055 24%,#005db5 67%,#0074d9 100%);
+}
+.widget form input,.widget form button {
+    margin-bottom: 0;
+}
+.widget {
+    margin-bottom: 40px;
+}
+.widget h4 {
+    margin-bottom: 20px;
+}
+.widget li {
+    margin-bottom: 7px;
+    border-bottom: 1px solid #bbb;
+    padding-bottom: 7px;
+}
+.widget.widget-tags {
+    margin-bottom: 0;
+}
+.widget li:last-child {
+    border-bottom: none;
+	margin: 0;
+	padding: 0;
+}
+.widget li a:hover {
+    color: #000;
+}
+.widget-tags a {
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding: 5px 15px;
+	margin-bottom: 8px;
+    margin-right: 5px;
+    color: #000;
+}
+.widget-tags a:hover {
+    color: #fff;
+    background: #000;
+}
+/*--------------------------------------
+--------- BLOG DETAILS CSS CSS END ---------
+---------------------------------------*/
+
+.login-buttons { display: flex; flex-direction: row; justify-content: space-between; gap: 10px; }
+.login-buttons a, .login-buttons button { 
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ddd; margin: 0; border: 2px solid #ddd;
+    color: #000;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease; text-align: center;
+}
+.login-buttons a:hover, .login-buttons button:hover {
+    background-color: #bbb;
+    color: #333;
+    border-color: #333;
+}
+.login-buttons .primary-btn {
+    background-color: #0074da;
+    color: #fff;
+    border-color: #0074da;
+}
+.login-buttons .primary-btn:hover {
+    background-color: transparent;
+    color: #0074da;
+    border-color: #0074da;
+}
+.login-buttons .secondary-btn {
+    background-color: #ccc;
+    color: #333;
+    border-color: #ccc;
+}
+.login-buttons .secondary-btn:hover {
+    background-color: #aaa;
+    color: #000;
+    border-color: #aaa;
+}
+.login-buttons .outlined-btn {
+    background-color: transparent;
+    color: #0074da;
+    border-color: #0074da;
+}    
+.login-buttons .outlined-btn:hover {
+    background-color: #0074da;
+    color: #fff;
+    border-color: #0074da;
+}
+
+.error_text {
+    color: #e60000; font-size: 12px; text-align: right;;
+}
+
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.video-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.video-background::after {
+  content: ""; opacity: 0.75;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(30,47,86);
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFlMmY1NiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxNzc2Y2EiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+    background: -moz-linear-gradient(left,  rgb(30,47,86) 0%, rgb(23,118,202) 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgb(30,47,86)), color-stop(100%,rgb(23,118,202)));
+    background: -webkit-linear-gradient(left,  rgb(30,47,86) 0%,rgb(23,118,202) 100%);
+    background: -o-linear-gradient(left,  rgb(30,47,86) 0%,rgb(23,118,202) 100%);
+    background: -ms-linear-gradient(left,  rgb(30,47,86) 0%,rgb(23,118,202) 100%);
+    background: linear-gradient(to right,  rgb(30,47,86) 0%,rgb(23,118,202) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e2f56', endColorstr='#1776ca',GradientType=1 );    
+}
+
+.hero-area .swiper-pagination {
+  margin-top: 20px;
+  position: relative;
+}
+
+.hero-area .swiper-pagination-bullet {
+  background: transparent;
+  opacity: 1;
+  width: 18px;
+  height: 18px; border: 2px solid #fff; 
+}
+
+.hero-area .swiper-pagination-bullet-active {
+  background: #fff
 }

@@ -1,0 +1,18 @@
+/* Dots spacing */
+.testimonial-wrap .swiper-pagination {
+  margin-top: 20px;
+  position: relative;
+}
+
+/* Default dot */
+.testimonial-wrap .swiper-pagination-bullet {
+  background: transparent;
+  opacity: 1;
+  width: 18px;
+  height: 18px; border: 2px solid #0074da; 
+}
+
+/* Active dot */
+.testimonial-wrap .swiper-pagination-bullet-active {
+  background: #0074da
+}

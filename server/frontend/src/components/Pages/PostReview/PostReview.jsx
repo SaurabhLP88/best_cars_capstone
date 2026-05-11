@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-
-import Header from "../../Common/Header/Header";
+// import { useParams } from 'react-router-dom';
+// import Header from "../../Common/Header/Header";
 
 import "../Dealers/Dealers.css";
 
-const PostReview = () => {
+const PostReview = ({dealerId}) => {
   const [dealer, setDealer] = useState({});
   const [review, setReview] = useState("");
   const [model, setModel] = useState("");
@@ -22,11 +21,66 @@ const PostReview = () => {
   let carmodels_url = root_url+`djangoapp/get_cars`;*/
 
   //let root_url = "http://localhost:3030/";
-  let params = useParams();
-  let id =params.id;
-  let dealer_url = `/djangoapp/dealer/${id}`;
+  // let params = useParams();
+  // let id =params.id;
+
+  const id = dealerId;
+  //let dealer_url = `/djangoapp/dealer/${id}`;
   let review_url = `/djangoapp/add_review`;
-  let carmodels_url = `/djangoapp/cars/${id}`;
+  //let carmodels_url = `/djangoapp/cars/${id}`;
+
+  const currentYear = new Date().getFullYear();
+  const years = [];
+
+  for (let y = currentYear; y >= 2015; y--) {
+    years.push(y);
+  }
+
+  useEffect(() => {
+
+    setDealer({});
+    setReview("");
+    setModel("");
+    setYear("");
+    setDate("");
+    setCarmodels([]);
+
+    const get_dealer = async () => {
+      try {
+        const res = await fetch(`/djangoapp/dealer/${dealerId}`);
+        const data = await res.json();
+
+        if (data.status === 200 && data.dealer.length > 0) {
+          setDealer(data.dealer[0]);
+        }
+      } catch (err) {
+        console.error("Error loading dealer:", err);
+      }
+    };
+
+    const get_cars = async () => {
+      try {
+        const res = await fetch(`/djangoapp/cars/${dealerId}`);
+        const cars = await res.json();
+
+        const uniqueCars = Array.from(
+          new Map(
+            cars.map(car => [`${car.make}-${car.model}`, car])
+          ).values()
+        );
+
+        setCarmodels(uniqueCars);
+      } catch (err) {
+        console.error("Error loading cars:", err);
+      }
+    };
+
+    if (dealerId) {
+      get_dealer();
+      get_cars();
+    }
+
+  }, [dealerId]);
 
   const postreview = async ()=>{
     let name = sessionStorage.getItem("firstname")+" "+sessionStorage.getItem("lastname");
@@ -64,92 +118,97 @@ const PostReview = () => {
     });
 
     if (res.ok) {
-      window.location.href = window.location.origin + "/dealer/" + id;
+      // window.location.href = window.location.origin + "/dealer/" + id;
+      alert("Review submitted!");
     } else {
       alert("Failed to submit review");
     }
 
+  };    
+
+  const handleReset = () => {
+    setReview("");
+    setModel("");
+    setYear("");
+    setDate("");
   };
-  const get_dealer = async () => {
-    try {
-      const res = await fetch(dealer_url);
-      const data = await res.json();
-      if (data.status === 200 && data.dealer.length > 0) {
-        setDealer(data.dealer[0]);
-      }
-    } catch (err) {
-      console.error("Error loading dealer:", err);
-    }
-  };
-
-  const get_cars = async () => {
-    try {
-      const res = await fetch(carmodels_url);
-      const cars = await res.json();
-
-      // Deduplicate make + model
-      const uniqueCars = Array.from(
-        new Map(
-          cars.map(car => [
-            `${car.make}-${car.model}`,
-            car
-          ])
-        ).values()
-      );
-
-      setCarmodels(uniqueCars);
-    } catch (err) {
-      console.error("Error loading cars:", err);
-    }
-  };
-
-  useEffect(() => {
-    get_dealer();
-    get_cars();
-  },[]);
 
 
   return (
-    <div>
-      <Header/>
-      <div  style={{margin:"5%"}}>
-      <h1 style={{color:"darkblue"}}>{dealer.full_name}</h1>
-      <textarea id='review' cols='50' rows='7' onChange={(e) => setReview(e.target.value)}></textarea>
-      <div className='input_field'>
-      Purchase Date <input type="date" onChange={(e) => setDate(e.target.value)}/>
-      </div>
-      <div className='input_field'>
-      Car Make 
-      <select
-        name="cars"
-        id="cars"
-        value={model}
-        onChange={(e) => setModel(e.target.value)}
-      >
-        <option value="" disabled hidden>
-          Choose Car Make and Model
-        </option>
+      <div className='post-review-contain'>
 
-        {carmodels.map((car) => (
-          <option
-            key={`${car.make}-${car.model}`}   // now truly unique
-            value={`${car.make} ${car.model}`}
-          >
-            {car.make} {car.model}
-          </option>
-        ))}
-      </select>      
-      </div >
+        <div className="sec-title mb-3 pt-3">
+          <h2>{dealer.full_name} <span className="sec-title-border"><span></span><span></span><span></span></span></h2>
+        </div>
 
-      <div className='input_field'>
-      Car Year <input type="number" min={2015} max={2023} onChange={(e) => setYear(e.target.value)} />
-      </div>
+        <div className="row">
+          <div className="col-12">
+            <div className="form-group">
+              <label htmlFor="reviewMsg" className='mb-0'>Your Review</label>
+              <textarea className="form-control" name='reviewMsg' id='reviewMsg' cols='50' rows='7' value={review} onChange={(e) => setReview(e.target.value)} placeholder='Enter your review'></textarea>
+            </div>
+          </div>
+          <div className="col-12">
+            <div className="form-group">
+              <label htmlFor="carsMakeModel" className='mb-0'>Car Make and Model</label>
+              <select
+                name="carsMakeModel"
+                id="carsMakeModel"
+                className="form-control"
+                value={model}
+                onChange={(e) => setModel(e.target.value)}
+              >
+                <option value="" disabled hidden>
+                  Choose Car Make and Model
+                </option>
 
-      <div>
-      <button className='postreview' onClick={postreview}>Post Review</button>
+                {carmodels.map((car) => (
+                  <option
+                    key={`${car.make}-${car.model}`}   // now truly unique
+                    value={`${car.make} ${car.model}`}
+                  >
+                    {car.make} {car.model}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className="col-12 col-md-6">
+            <div className="form-group">
+              <label htmlFor="purchaseDate" className='mb-0'>Purchase Date</label>
+              <input type="date" value={date} onChange={(e) => setDate(e.target.value)} name='purchaseDate' id="purchaseDate" className="form-control" placeholder="Enter Purchase Date" />
+            </div>
+          </div>          
+          <div className="col-12 col-md-6">
+            <div className="form-group">
+              <label htmlFor="carYear" className='mb-0'>Car Year</label>
+              {/*<input type="number" name='carYear' id="carYear" min={2015} max={2026} value={year} onChange={(e) => setYear(e.target.value)} className="form-control" placeholder="Enter Car Year" />*/}
+              <select
+                className="form-control"
+                id="carYear"
+                name="carYear"
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
+              >
+                <option value="">Select Year</option>
+                {years.map((y) => (
+                  <option key={y} value={y}>
+                    {y}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <hr className="mt-2 mb-3" />
+
+        <div className="login-buttons flex-row justify-content-center">
+          <button type="reset" onClick={handleReset} className="secondary-btn">Reset</button>
+          <button type='button' onClick={postreview} className="primary-btn">Post Review</button>
+        </div>
+
       </div>
-    </div>
-    </div>
   );
 };
 export default PostReview;

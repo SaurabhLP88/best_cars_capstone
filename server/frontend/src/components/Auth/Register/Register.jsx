@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import Header from "../../Common/Header/Header";
+
+import Copyright from "../../Common/Footer/Copyright";
+
 import "./Register.css";
 
-import user_icon from "../../../assets/icons/person.png";
-import email_icon from "../../../assets/icons/email.png";
-import password_icon from "../../../assets/icons/password.png";
+import logoImg from "../../../assets/images/logos/bestcars_dark_01.png";
+import bgImg from "../../../assets/images/auths-01.jpg";
 
 const Register = () => {
   const [userName, setUserName] = useState("");
@@ -105,124 +106,115 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <Header />
+    <>
+    
+      {/* Page loader */}
+      {loading && <div id="preloader" className={!loading ? "fade-out" : ""}></div>}
 
-      <div className="register_container" style={{ width: "50%" }}>
-        <div className="header">
-          <span className="text">Sign Up</span>
-          <hr />
+      <section className="hero-area d-flex align-items-center justify-content-center" id="login" style={{ height: "100vh", paddingTop: "0px", backgroundImage: `url(${bgImg})` }}>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6 offset-md-3">
+              <div className="contact-form" style={{ margin: "0", }}>
+                <div className="logo text-center mb-4">
+                  <a href="/"><img src={logoImg} alt="logo" style={{height: "32px"}} /></a>
+                </div>
+                <h4>Sign Up</h4>
+                <p className="form-message"></p>
+                <form className="login_panel" onSubmit={register} noValidate>
+                    {errors.userName && (
+                      <div className="error_text">{errors.userName}</div>
+                    )}
+                    <input
+                      type="text"
+                      placeholder="Username"
+                      value={userName}
+                      onChange={(e) => setUserName(e.target.value)}
+                    />                  
+                    
+                    {errors.firstName && (
+                      <div className="error_text">{errors.firstName}</div>
+                    )}
+                    <input
+                      type="text"
+                      placeholder="First Name"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                    />                  
+
+                    {errors.lastName && (
+                      <div className="error_text">{errors.lastName}</div>
+                    )}
+                    <input
+                      type="text"
+                      placeholder="Last Name"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                    />                  
+
+                    {errors.email && (
+                      <div className="error_text">{errors.email}</div>
+                    )}
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                    
+                    {errors.password && (
+                      <div className="error_text">{errors.password}</div>
+                    )}
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />                  
+
+                    <div className="login-buttons">
+                      <button
+                        type="button"
+                        name="reset"
+                        onClick={handleReset}
+                        disabled={loading}
+                        className="secondary-btn"
+                      >
+                        Reset
+                      </button>
+                      
+                      <button type="submit" name="register" disabled={loading} className="primary-btn">
+                        {loading ? "Registering..." : "Register"}
+                      </button>
+                    </div>
+
+                    {/* Server Error */}
+                    {serverError && (
+                      <div className="error_text server_error">{serverError}</div>
+                    )}
+                    <hr />
+
+                    <p className="m-0 text-center">
+                      Already have an account?{" "}
+                      <a href="/login">
+                        Login
+                      </a>
+                    </p>
+
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-white text-center mt-4">
+            <Copyright />
+          </div>
+          
         </div>
+      </section>   
 
-        <form onSubmit={register} noValidate>
-          <div className="inputs">
-            {/* Username */}
-            <div className="input">
-              <img src={user_icon} className="img_icon" alt="Username" />
-              <input
-                type="text"
-                placeholder="Username"
-                className="input_field"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-              />
-            </div>
-            {errors.userName && (
-              <div className="error_text">{errors.userName}</div>
-            )}
+    </>
 
-            {/* First Name */}
-            <div className="input">
-              <img src={user_icon} className="img_icon" alt="First Name" />
-              <input
-                type="text"
-                placeholder="First Name"
-                className="input_field"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-            </div>
-            {errors.firstName && (
-              <div className="error_text">{errors.firstName}</div>
-            )}
-
-            {/* Last Name */}
-            <div className="input">
-              <img src={user_icon} className="img_icon" alt="Last Name" />
-              <input
-                type="text"
-                placeholder="Last Name"
-                className="input_field"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </div>
-            {errors.lastName && (
-              <div className="error_text">{errors.lastName}</div>
-            )}
-
-            {/* Email */}
-            <div className="input">
-              <img src={email_icon} className="img_icon" alt="Email" />
-              <input
-                type="email"
-                placeholder="Email"
-                className="input_field"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            {errors.email && (
-              <div className="error_text">{errors.email}</div>
-            )}
-
-            {/* Password */}
-            <div className="input">
-              <img src={password_icon} className="img_icon" alt="Password" />
-              <input
-                type="password"
-                placeholder="Password"
-                className="input_field"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            {errors.password && (
-              <div className="error_text">{errors.password}</div>
-            )}
-          </div>
-
-          {/* Server Error */}
-          {serverError && (
-            <div className="error_text server_error">{serverError}</div>
-          )}
-
-          {/* Buttons */}
-          <div className="submit_panel">
-            <button type="submit" className="submit" disabled={loading}>
-              {loading ? "Registering..." : "Register"}
-            </button>
-
-            <button
-              type="button"
-              className="submit"
-              onClick={handleReset}
-              disabled={loading}
-            >
-              Reset
-            </button>
-          </div>
-        </form>
-
-        {/* Login Link */}
-        <p style={{ textAlign: "center", marginTop: "15px" }}>
-          Already have an account?{" "}
-          <a href="/login">
-            Login
-          </a>
-        </p>
-      </div>
-    </div>
   );
 };
 

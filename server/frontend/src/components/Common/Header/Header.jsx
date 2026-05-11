@@ -1,12 +1,58 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../../../assets/css/style.css";
-import "../../../assets/css/bootstrap.min.css";
+
+import logoImg from "../../../assets/images/logos/bestcars_light_01.png";
+
+const menuItems = [
+  /*{
+    label: "Home",
+    path: "/",
+  },*/
+  {
+    label: "New Car",
+    path: "/",
+  },
+  {
+    label: "Pre-owned",
+    path: "/",
+    submenu: [
+      { label: "Buy certified car", path: "/buyCertified" },
+      { label: "Buy luxury car", path: "/buyLuxury " },
+      { label: "Sell certified car", path: "/sellCertified" },
+    ],
+  },
+  {
+    label: "Dealerships",
+    path: "/dealers",
+  },
+  {
+    label: "Services",
+    path: "/",
+    submenu: [
+      { label: "Book a service", path: "/book" },
+    ],
+  },
+  {
+    label: "About",
+    path: "/",
+    submenu: [
+      { label: "About Us", path: "/about" },
+      { label: "Blogs", path: "/blogs" },
+    ],
+  },
+  {
+    label: "Contact Us",
+    path: "/contact",
+  },
+];
 
 const Header = () => {
+  
+  const [isSticky, setIsSticky] = useState(false);
   const [username, setUsername] = useState(
     sessionStorage.getItem("username")
   );
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const logout = async (e) => {
@@ -25,57 +71,102 @@ const Header = () => {
 
   // Sync username if sessionStorage changes (page refresh)
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000); // you can adjust
+
     setUsername(sessionStorage.getItem("username"));
+
+    const handleScroll = () => {
+      const offset = 100;
+      setIsSticky(window.scrollY > offset);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
-    <nav
-      className="navbar navbar-expand-lg navbar-light"
-      style={{ backgroundColor: "darkturquoise", height: "1in" }}
-    >
-      <div className="container-fluid">
-        <h2 style={{ paddingRight: "5%" }}>Dealerships</h2>
+    <>
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarText"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+      {/* Page loader */}
+	    {loading && <div id="preloader" className={!loading ? "fade-out" : ""}></div>}
 
-        <div className="collapse navbar-collapse" id="navbarText">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link" to="/">Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/about">About Us</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/contact">Contact Us</Link>
-            </li>
-          </ul>
+      {/* header section start */}
+      <header className={`header ${isSticky ? "sticky" : ""}`}>
+        <div className="container">
 
-          <span className="navbar-text">
-            {username ? (
-              <div className="input_panel">
-                <span className="username">{username}</span>
-                <a href="/" className="nav_item" onClick={logout}>
-                  Logout
-                </a>
+          <div className="header-top">
+            <div className="row flexbox-center">
+              <div className="col-lg-2 col-md-3 col-6">
+                <p className="m-0 text-white">Call Us: <a href="tel:123456789" className="text-light font-weight-bold">+91 123456789</a></p>
               </div>
-            ) : (
-              <div className="input_panel">
-                <Link className="nav_item" to="/login">Login</Link>
-                <Link className="nav_item" to="/register">Register</Link>
+              <div className="col-lg-10 col-md-9 col-6">
+                <div className="mainmenu">
+                    <ul id="auth-menu">
+                        {username ? (
+                          <>
+                            <li className="ml-4 font-weight-bold"><span className="text-light">Welcome, {username}</span></li>
+                            <li className="ml-3"><Link className="appao-btn" to="/" onClick={logout}>Logout</Link></li>
+                          </>
+                        ) : (
+                          <>
+                            <li className="ml-4"><Link className="appao-btn" to="/login">Login</Link></li>
+                            <li className="ml-2"><Link className="appao-btn" to="/register">Register</Link></li>
+                          </>
+                        )}
+                        
+                    </ul>
+                </div>
               </div>
-            )}
-          </span>
+            </div>
+          </div>
+          <div className="header-bottom">
+            <div className="row flexbox-center">
+              <div className="col-lg-2 col-md-3 col-6">
+                <div className="logo">
+                  <a href="/"><img src={logoImg} alt="logo" /></a>
+                </div>
+              </div>
+              <div className="col-lg-10 col-md-9 col-6">
+                <div className="responsive-menu"></div>
+                <div className="mainmenu">
+                    <ul id="primary-menu">
+                        {menuItems.map((item, index) => (
+                          <li key={index} className={item.submenu ? "has-submenu" : ""}>
+                            
+                            <Link className="nav-link" to={item.path}>
+                              {item.label} {item.submenu && <i className="icofont icofont-simple-down"></i>}
+                            </Link>
+                            {item.submenu && (
+                              <ul className="submenu">
+                                {item.submenu.map((sub, subIndex) => (
+                                  <li key={subIndex}>
+                                    <Link to={sub.path}><i className="icofont icofont-simple-right mr-1"></i> {sub.label}</Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+
+                          </li>
+                        ))}
+                        
+                    </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          
         </div>
-      </div>
-    </nav>
+      </header>
+
+      {/* header section end */}
+      
+    </>
   );
 };
 

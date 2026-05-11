@@ -5,9 +5,11 @@ import About from "./components/Pages/About/About";
 import LoginPanel from "./components/Auth/Login/Login";
 import RegisterPanel from "./components/Auth/Register/Register";
 import Dealers from './components/Pages/Dealers/Dealers';
-import Dealer from "./components/Pages/Dealer/Dealer";
-import PostReview from "./components/Pages/PostReview/PostReview";
+//import Dealer from "./components/Pages/Dealer/Dealer";
+//import PostReview from "./components/Pages/PostReview/PostReview";
 import SearchCars from "./components/Pages/SearchCars/SearchCars";
+import Blogs from "./components/Pages/Blogs/Blogs";
+import BlogDetails from "./components/Pages/BlogDetails/BlogDetails";
 import Contact from "./components/Pages/Contact/Contact";
 
 function App() {
@@ -18,9 +20,11 @@ function App() {
       <Route path="/login" element={<LoginPanel />} />
       <Route path="/register" element={<RegisterPanel />} />
       <Route path="/dealers" element={<Dealers/>} />
-      <Route path="/dealer/:id" element={<Dealer/>} />
-      <Route path="/postreview/:id" element={<PostReview/>} />
+      {/* <Route path="/dealer/:id" element={<Dealer/>} /> */}
+      {/* <Route path="/postreview/:id" element={<PostReview/>} /> */}
       <Route path="/searchcars/:id" element={<SearchCars/>} />
+      <Route path="/blogs" element={<Blogs />} />
+      <Route path="/blogDetails" element={<BlogDetails />} />
       <Route path="/contact" element={<Contact />} />
     </Routes>
   );

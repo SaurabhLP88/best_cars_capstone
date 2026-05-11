@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import Header from "../../Common/Header/Header";
+import Banner from "../../Common/Banner/Banner";
+import Footer from "../../Common/Footer/Footer";
+
+import car_dealership from "../../../assets/images/car_dealership.jpg";
+
+import "./SearchCars.css";
 
 const SearchCars = () => {
   const [cars, setCars] = useState([]);
@@ -223,17 +229,214 @@ const SearchCars = () => {
   }, []);
 
   return(
-  <div>
+  <>
     <Header />
-    <h1
-      style={{
-        marginBottom: "20px",
-      }}
-    >
-      Cars at
-      {dealer.full_name}
-    </h1>
-    <div>
+
+    <Banner
+      title="Search Cars"
+      breadcrumbs={[
+        { label: "Home", path: "/" },
+        { label: "Search Cars" },
+      ]}
+    />
+
+    <div className="search-cars-contain py-5">
+      <div className="container">
+        <div className="sec-title mb-5">
+          <h2>Cars at <strong>{dealer.full_name}</strong>  <span className="sec-title-border"><span></span><span></span><span></span></span></h2>
+        </div>
+
+        <div className="row">
+          <div className="col-12 col-md-6 col-lg-4">
+            <div class="card card-search-cars text-white bg-primary mt-2 mb-3">
+              <div class="card-body">
+                <div className="row row-cols-1 mx-n2">
+
+                  <div className="col px-2">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <label class="input-group-text" for="make">Make</label>
+                      </div>
+                      <select 
+                        class="custom-select"
+                        name="make"
+                        id="make"
+                        onChange={SearchCarsByMake}
+                      >
+                        {makes.length === 0 ? (
+                          <option value="">No data found</option>
+                        ) : (
+                          <>
+                            <option value="all">-- All --</option>
+                            {makes.map((make, index) => (
+                              <option key={index} value={make}>{make}</option>
+                            ))}
+                          </>
+                        )}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="col px-2">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <label class="input-group-text" for="model">Model</label>
+                      </div>
+                      <select 
+                        class="custom-select"
+                        name="model"
+                        id="model"
+                        onChange={SearchCarsByModel}
+                      >
+                        {models.length === 0 ? (
+                          <option value="">No data found</option>
+                        ) : (
+                          <>
+                            <option disabled defaultValue>-- All --</option>
+                            {models.map((model, index) => (
+                              <option key={index} value={model}>{model}</option>
+                            ))}
+                          </>
+                        )}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="col px-2">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <label class="input-group-text" for="year">Year</label>
+                      </div>
+                      <select 
+                        class="custom-select"
+                        name="year"
+                        id="year"
+                        onChange={SearchCarsByYear}
+                      >
+                        <option value="all">-- All --</option>
+                        <option value="2024">2024 or newer</option>
+                        <option value="2023">2023 or newer</option>
+                        <option value="2022">2022 or newer</option>
+                        <option value="2021">2021 or newer</option>
+                        <option value="2020">2020 or newer</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="col px-2">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <label class="input-group-text" for="mileage">Mileage</label>
+                      </div>
+                      <select 
+                        class="custom-select"
+                        name="mileage"
+                        id="mileage"
+                        onChange={SearchCarsByMileage}
+                      >
+                        <option value="all">-- All --</option>
+                        <option value="50000">Under 50000</option>
+                        <option value="100000">50000 - 100000</option>
+                        <option value="150000">100000 - 150000</option>
+                        <option value="200000">150000 - 200000</option>
+                        <option value="200001">Over 200000</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="col px-2">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <label class="input-group-text" for="price">Price</label>
+                      </div>
+                      <select 
+                        class="custom-select"
+                        name="price"
+                        id="price"
+                        onChange={SearchCarsByPrice}
+                      >
+                        <option value="all">-- All --</option>
+                        <option value="20000">Under 20000</option>
+                        <option value="40000">20000 - 40000</option>
+                        <option value="60000">40000 - 60000</option>
+                        <option value="80000">60000 - 80000</option>
+                        <option value="80001">Over 80000</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="col px-2 text-right">
+                    <button
+                      className="appao-btn3"
+                      onClick={reset}
+                    >
+                      Reset
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-12 col-md-6 col-lg-8">
+            <div>
+              {cars.length === 0 ? (
+                <h4 className="text-center text-blue1 font-weight-bold">
+                  {message}
+                </h4>
+              ) : (
+                <div className="row row-cols-2 mx-n1"> {/*class="list-group"*/}
+                  {cars.map((car) => (
+                    
+                    /*<div class="list-group-item list-group-item-action" key={car._id}>
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{car.make} {car.model}</h5>
+                        <small class="text-muted">{car.year}</small>
+                      </div>
+                      <p class="mb-1">Mileage :{car.mileage}</p>
+                      <small class="text-muted">Price :{car.price}</small>
+                    </div>*/
+
+                     <div className='col px-1' key={car._id}>
+                      <div className="p-2">
+                        <div className="single-post p-0">
+                          <div className="post-thumbnail text-center">
+                            <img
+                              src={car_dealership}
+                              alt="{car.make} {car.model}"
+                            />
+                          </div>
+
+                          <div className="post-details px-3 py-3">
+                            <div className="post-author font-weight-bold d-flex justify-content-start align-items-start flex-wrap text-blue1">
+                              <span className="d-flex justify-content-start">
+                                <i className="icofont icofont-speech-comments text-dark h5 my-0"></i> {car.mileage} miles
+                              </span>
+                              <span className="d-flex justify-content-start">
+                                <i className="icofont icofont-calendar text-dark h5 my-0"></i> {car.year}
+                              </span>
+                              <span className="d-flex justify-content-start">
+                                <i className="icofont icofont-calendar text-dark h5 my-0"></i> ${car.price.toLocaleString()}
+                              </span>
+                            </div>
+
+                            <h4 className="post-title mt-2 mb-0">{car.make} {car.model}</h4>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>        
+
+      </div>
+    </div>
+
+    {/*<div>
       <span
         style={{
           marginLeft: "10px",
@@ -392,6 +595,8 @@ const SearchCars = () => {
         Reset
       </button>
     </div>
+
+
     <div
       style={{
         marginLeft: "10px",
@@ -428,7 +633,10 @@ const SearchCars = () => {
           ))}
         </div>
       )}
-    </div>
-  </div>
+    </div>*/}
+
+    <Footer />
+
+  </>
 )}
 export default SearchCars;

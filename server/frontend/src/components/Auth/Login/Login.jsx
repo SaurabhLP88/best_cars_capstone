@@ -1,6 +1,11 @@
 import React, { useState } from "react";
-import Header from "../../Common/Header/Header";
+
+import Copyright from "../../Common/Footer/Copyright";
+
 import "./Login.css";
+
+import logoImg from "../../../assets/images/logos/bestcars_dark_01.png";
+import bgImg from "../../../assets/images/auths-01.jpg";
 
 const Login = () => {
   const [userName, setUserName] = useState("");
@@ -85,74 +90,80 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <Header />
+    <>
 
-      <div className="modalContainer">
-        <form className="login_panel" onSubmit={login} noValidate>
-          <h3>Login</h3>
+      {/* Page loader */}
+      {loading && <div id="preloader" className={!loading ? "fade-out" : ""}></div>}
 
-          {/* Username */}
-          <div>
-            <label>Username</label>
-            <input
-              type="text"
-              value={userName}
-              placeholder="Username"
-              className="input_field"
-              onChange={(e) => setUserName(e.target.value)}
-            />
-            {errors.userName && (
-              <div className="error_text">{errors.userName}</div>
-            )}
+      <section className="hero-area d-flex align-items-center justify-content-center" id="login" style={{ height: "100vh", paddingTop: "0px", backgroundImage: `url(${bgImg})`  }}>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-6 offset-md-3">
+              <div className="contact-form m-0">
+                <div className="logo text-center mb-4">
+                  <a href="/"><img src={logoImg} alt="logo" style={{height: "32px"}} /></a>
+                </div>
+                <h4>Login</h4>
+                <p className="form-message"></p>
+                <form className="login_panel" onSubmit={login} noValidate>
+                    {errors.userName && (
+                      <p className="error_text">{errors.userName}</p>
+                    )}
+                    <input 
+                      type="text" 
+                      name="name" 
+                      placeholder="Username"
+                      value={userName}
+                      onChange={(e) => setUserName(e.target.value)}
+                    />
+                    {errors.password && (
+                      <p className="error_text">{errors.password}</p>
+                    )}
+                    <input type="password" name="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                    
+                    <div className="login-buttons">                      
+                      <button
+                        type="button"
+                        name="reset"
+                        onClick={handleReset}
+                        disabled={loading}
+                        className="secondary-btn"
+                      >
+                        Reset
+                      </button>
+                      <button
+                        type="submit" 
+                        name="login"
+                        disabled={loading}
+                        className="primary-btn ml-2"
+                      >
+                        {loading ? "Logging in..." : "Login"}
+                      </button>
+                    </div>
+
+                    {serverError && (
+                      <div className="error_text server_error">{serverError}</div>
+                    )}
+
+                    <hr />
+
+                    <p className="m-0 text-center">
+                      Don't have an account? <a href="/register">Register Now</a>
+                    </p>
+                </form>
+              </div>
+            </div>
           </div>
 
-          {/* Password */}
-          <div>
-            <label>Password</label>
-            <input
-              type="password"
-              value={password}
-              placeholder="Password"
-              className="input_field"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            {errors.password && (
-              <div className="error_text">{errors.password}</div>
-            )}
+          <div className="text-white text-center mt-4">
+            <Copyright />
           </div>
+          
+        </div>
+      </section>   
 
-          {/* Server Error */}
-          {serverError && (
-            <div className="error_text server_error">{serverError}</div>
-          )}
+    </>
 
-          {/* Actions */}
-          <div>
-            <button
-              type="submit"
-              className="action_button"
-              disabled={loading}
-            >
-              {loading ? "Logging in..." : "Login"}
-            </button>
-
-            <button
-              type="button"
-              className="action_button"
-              onClick={handleReset}
-              disabled={loading}
-            >
-              Reset
-            </button>
-          </div>
-
-          <a className="loginlink" href="/register">
-            Register Now
-          </a>
-        </form>
-      </div>
-    </div>
   );
 };
 

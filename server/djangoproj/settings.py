@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from dotenv import load_dotenv
-load_dotenv()
 
 import os
 from pathlib import Path
@@ -20,7 +19,7 @@ import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+load_dotenv(os.path.join(BASE_DIR, 'djangoapp/.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -30,7 +29,7 @@ SECRET_KEY =\
     'django-insecure-ccow$tz_=9%dxu4(0%^(z%nx32#s@(zt9$ih@)5l54yny)wm-0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False #True
+DEBUG = True
 
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 ALLOWED_HOSTS = ["*"]
@@ -72,9 +71,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',        
         'DIRS': [            
-            # os.path.join(BASE_DIR, 'frontend/static'),
-            # os.path.join(BASE_DIR, 'frontend/build'),
-            # os.path.join(BASE_DIR, 'frontend/build/static'),
+            os.path.join(BASE_DIR, 'frontend/static'),
+            os.path.join(BASE_DIR, 'frontend/build'),
+            os.path.join(BASE_DIR, 'frontend/build/static'),
         ],        
         'APP_DIRS': True,
         'OPTIONS': {
@@ -171,6 +170,11 @@ STATICFILES_DIRS = [
 ]
 '''
 
-BACKEND_URL = os.getenv("BACKEND_URL", "http://node-api:3030")
+# BACKEND_URL = os.getenv("BACKEND_URL", "http://node-api:3030")
+
+BACKEND_URL = os.getenv("BACKEND_URL")
+
+if not BACKEND_URL:
+    raise Exception("BACKEND_URL is not set")
 
 CORS_ALLOW_ALL_ORIGINS = True
