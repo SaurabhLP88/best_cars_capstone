@@ -14,7 +14,7 @@ import ScreenshotSlider from "../../Sections/ScreenshotSlider/ScreenshotSlider";
 import Testimonial from "../../Sections/Testimonial/Testimonial";
 import VideoBackground from "../../Sections/VideoBackground/VideoBackground";
 
-import bgVideo from "../../../assets/videos/night_driving_01.mp4";
+//import bgVideo from "../../../assets/videos/night_driving_01.mp4";
 
 
 import chooseCarBg from "../../../assets/images/choose-car-bg-01.jpg";
@@ -112,7 +112,7 @@ const Home = () => {
 
       {/* hero area start */}
       <section className="hero-area" id="home">
-        <VideoBackground type="file" src={bgVideo} />
+        {/*<VideoBackground type="file" src={bgVideo} />*/}
         <div className="hero-area-overlay">
           <div className="container">
             <div className="row">
