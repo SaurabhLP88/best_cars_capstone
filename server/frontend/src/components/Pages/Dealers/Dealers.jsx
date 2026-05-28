@@ -71,6 +71,7 @@ const Dealers = () => {
     const get_dealers = async () => {
       try {
         const res = await fetch(dealer_url);
+        console.log(res);
 
         if (!res.ok) {
           console.error("Dealers API failed:", res.status);
@@ -79,6 +80,7 @@ const Dealers = () => {
         }
 
         const retobj = await res.json();
+        console.log(retobj);
 
         if (retobj.status === 200 && Array.isArray(retobj.dealers)) {
           const all_dealers = retobj.dealers;
