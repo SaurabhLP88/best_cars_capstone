@@ -27,8 +27,11 @@ const Dealers = () => {
   // let [states, setStates] = useState([]);
 
   // let root_url = window.location.origin
-  const dealer_url ="/djangoapp/get_dealers";  
+  // const dealer_url ="/djangoapp/get_dealers";  
   // let dealer_url_by_state = "/djangoapp/get_dealers/";
+
+  const API = process.env.REACT_APP_API_URL;
+  const dealer_url = `${API}/djangoapp/get_dealers`;
   let isLoggedIn = sessionStorage.getItem("username") != null ? true : false;
 
   const totalItems = dealersList.length;
