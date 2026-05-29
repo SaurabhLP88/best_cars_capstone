@@ -1,4 +1,5 @@
 /*jshint esversion: 8 */
+require("dotenv").config();
 const express = require('express');
 const mongoose = require('mongoose');
 const fs = require('fs');
@@ -12,7 +13,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // -------------------- MongoDB --------------------
-mongoose.connect("mongodb://mongo:27017/", {
+mongoose.connect("process.env.MONGO_URL", {
+  // mongodb://mongo:27017/
   dbName: "dealershipsDB"
 })
 .then(() => console.log("✅ MongoDB connected"))
