@@ -1,5 +1,9 @@
 /*jshint esversion: 8 */
-require("dotenv").config();
+try {
+  require("dotenv").config();
+} catch (err) {
+  console.log("dotenv skipped on production");
+}
 console.log("MONGO_URL:", process.env.MONGO_URL);
 const express = require('express');
 const mongoose = require('mongoose');
