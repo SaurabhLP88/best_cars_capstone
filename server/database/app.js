@@ -1,4 +1,6 @@
 /*jshint esversion: 8 */
+require("dotenv").config();
+console.log("MONGO_URL:", process.env.MONGO_URL);
 const express = require('express');
 const mongoose = require('mongoose');
 const fs = require('fs');
@@ -12,10 +14,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // -------------------- MongoDB --------------------
-mongoose.connect("process.env.MONGO_URL", {
+/*mongoose.connect("process.env.MONGO_URL", {
   // mongodb://mongo:27017/
   dbName: "dealershipsDB"
-})
+})*/
+mongoose.connect(process.env.MONGO_URL)
 .then(() => console.log("✅ MongoDB connected"))
 .catch(err => console.error("❌ MongoDB error:", err));
 
