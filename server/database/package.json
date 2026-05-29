@@ -2,6 +2,7 @@
   "name": "cars-database",
   "version": "1.0.0",
   "description": "Unified backend API for Cars DB",
+  "private": true,
   "main": "app.js",
   "engines": {
     "node": "20.x"
