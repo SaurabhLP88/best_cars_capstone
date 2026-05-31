@@ -26,6 +26,8 @@ const Dealer = ({ dealerId, onOpenReview }) => {
   const [reviews, setReviews] = useState([]);
   const [unreviewed, setUnreviewed] = useState(false);
   // const [postReview, setPostReview] = useState(<></>);
+
+  const API = process.env.REACT_APP_API_URL;
   
   // let params = useParams();
   // let id =params.id;
@@ -78,7 +80,7 @@ const Dealer = ({ dealerId, onOpenReview }) => {
     const get_dealer = async () => {
       try {
         setDealerLoading(true);
-        const res = await fetch(`/djangoapp/dealer/${dealerId}`);
+        const res = await fetch(`${API}/djangoapp/dealer/${dealerId}`);
 
         if (!res.ok) {
           setDealerLoading(false);
@@ -99,7 +101,7 @@ const Dealer = ({ dealerId, onOpenReview }) => {
 
     const get_reviews = async () => {
       try {
-        const res = await fetch(`/djangoapp/reviews/dealer/${dealerId}`);
+        const res = await fetch(`${API}/djangoapp/reviews/dealer/${dealerId}`);
 
         if (!res.ok) {
           setUnreviewed(true);
@@ -127,8 +129,7 @@ const Dealer = ({ dealerId, onOpenReview }) => {
     get_dealer();
     get_reviews();
     
-  }, [dealerId]);
-
+  }, [dealerId, API]);
 
 return(
   <>
@@ -205,7 +206,7 @@ return(
 
         <>
         <div className="sec-title mb-0">
-          <h4>Car Reviews <span class="badge badge-pill badge-info">{reviews.length}</span></h4>
+          <h4>Car Reviews <span className="badge badge-pill badge-info">{reviews.length}</span></h4>
         </div>
 
         <Swiper
