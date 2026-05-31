@@ -54,11 +54,12 @@ const Header = () => {
   );
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const API = process.env.REACT_APP_API_URL;
 
   const logout = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("/djangoapp/logout", { method: "GET" });
+    const res = await fetch(`${API}/djangoapp/logout`, { method: "GET" });
     const json = await res.json();
 
     if (json) {

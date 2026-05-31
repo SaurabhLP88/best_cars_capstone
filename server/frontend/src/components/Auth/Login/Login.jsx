@@ -15,7 +15,8 @@ const Login = () => {
   const [serverError, setServerError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const login_url = "/djangoapp/login";
+  const API = process.env.REACT_APP_API_URL;
+  const login_url = `${API}/djangoapp/login`;
 
   // ---------- VALIDATION ----------
   const validate = () => {

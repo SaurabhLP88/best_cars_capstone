@@ -17,8 +17,9 @@ const Register = () => {
   const [errors, setErrors] = useState({});
   const [serverError, setServerError] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const register_url = "/djangoapp/register";
+  
+  const API = process.env.REACT_APP_API_URL;
+  const register_url = `${API}/djangoapp/register`;
 
   // ---------- VALIDATION ----------
   const validate = () => {
