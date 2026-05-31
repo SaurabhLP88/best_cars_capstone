@@ -16,6 +16,7 @@ import video_overview from "../../../assets/images/video-overview.jpg";
 const Dealers = () => {
   const [dealersList, setDealersList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [searchQuery, setSearchQuery] = useState('');
   const [originalDealers, setOriginalDealers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -68,42 +69,47 @@ const Dealers = () => {
     }
   };*/
 
-  useEffect(() => {
-    const get_dealers = async () => {
-      try {
-        setLoading(true);
-        const res = await fetch(dealer_url);
-        // console.log(res);
+  const get_dealers = async () => {
+    try {
+      setLoading(true);
+      setError("");
+      const res = await fetch(dealer_url);
+      // console.log(res);
 
-        if (!res.ok) {
-          console.error("Dealers API failed:", res.status);
-          setDealersList([]);
-          return;
-        }
-
-        const retobj = await res.json();
-        // console.log(retobj);
-
-        if (retobj.status === 200 && Array.isArray(retobj.dealers)) {
-          const all_dealers = retobj.dealers;
-          // const states = [...new Set(all_dealers.map(d => d.state))];
-
-          // setStates(states);
-          setDealersList(all_dealers);
-          setOriginalDealers(all_dealers);
-        } else {
-          console.error("Invalid dealers payload:", retobj);
-          setDealersList([]);
-          setOriginalDealers([]);
-          // setStates([]);
-        }
-      } catch (err) {
-        console.error("Dealers fetch error:", err);
+      if (!res.ok) {
+        console.error("Dealers API failed:", res.status);
         setDealersList([]);
-      } finally {
-        setLoading(false);
+        return;
       }
-    };
+
+      const retobj = await res.json();
+      // console.log(retobj);
+
+      if (retobj.status === 200 && Array.isArray(retobj.dealers)) {
+        const all_dealers = retobj.dealers;
+        // const states = [...new Set(all_dealers.map(d => d.state))];
+
+        // setStates(states);
+        setDealersList(all_dealers);
+        setOriginalDealers(all_dealers);
+      } else {
+        console.error("Invalid dealers payload:", retobj);
+        
+      }
+    } catch (err) {
+      console.error("Dealers fetch error:", err);
+      setDealersList([]);
+      setOriginalDealers([]);
+      // setStates([]);
+      setError(
+        "Unable to load dealers right now. Please try again later."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {    
     get_dealers();
   },[]);  
 
@@ -187,6 +193,23 @@ const Dealers = () => {
                       </div>
 
                       <h4 className="font-weight-bold">Loading dealers...</h4>
+                    </div>
+                  ) : error ? (
+                    <div className="col-12 text-center py-5">
+                      <h3 className="text-danger font-weight-bold">
+                        Failed to load dealers
+                      </h3>
+
+                      <p className="text-muted mb-4">
+                        {error}
+                      </p>
+
+                      <button
+                        className="appao-btn"
+                        onClick={get_dealers}
+                      >
+                        Retry
+                      </button>
                     </div>
                   ) : dealersList.length === 0 ? (
                     <div className="col-12">
