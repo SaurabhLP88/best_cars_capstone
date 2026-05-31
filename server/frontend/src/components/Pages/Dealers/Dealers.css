@@ -52,6 +52,42 @@
   background: #0074da
 }
 
+/* Skeleton / Blur Loading */
+@keyframes placeholderShimmer {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
+}
+.placeholder-glow {
+  position: relative;
+  overflow: hidden; text-align: center;
+}
+
+.placeholder {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: wait;
+  height: 1rem;
+
+  background: linear-gradient(
+    90deg,
+    #e9ecef 25%,
+    #f8f9fa 37%,
+    #e9ecef 63%
+  );
+
+  background-size: 400% 100%;
+  animation: placeholderShimmer 1.4s ease infinite;
+  opacity: 0.9; width: 60%; margin: 0 auto;
+}
+
+
+
+
 /*table{
     margin:5px;
     padding:10px;

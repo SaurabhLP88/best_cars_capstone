@@ -22,6 +22,7 @@ const Dealer = ({ dealerId, onOpenReview }) => {
   const navigate = useNavigate();
 
   const [dealer, setDealer] = useState({});
+  const [dealerLoading, setDealerLoading] = useState(true);
   const [reviews, setReviews] = useState([]);
   const [unreviewed, setUnreviewed] = useState(false);
   // const [postReview, setPostReview] = useState(<></>);
@@ -76,9 +77,13 @@ const Dealer = ({ dealerId, onOpenReview }) => {
 
     const get_dealer = async () => {
       try {
+        setDealerLoading(true);
         const res = await fetch(`/djangoapp/dealer/${dealerId}`);
 
-        if (!res.ok) return;
+        if (!res.ok) {
+          setDealerLoading(false);
+          return;
+        }
 
         const data = await res.json();
 
@@ -87,6 +92,8 @@ const Dealer = ({ dealerId, onOpenReview }) => {
         }
       } catch (err) {
         console.error("Dealer fetch error:", err);
+      } finally {
+        setDealerLoading(false);
       }
     };
 
@@ -115,6 +122,7 @@ const Dealer = ({ dealerId, onOpenReview }) => {
     setDealer({});
     setReviews([]);
     setUnreviewed(false);
+    setDealerLoading(true);
 
     get_dealer();
     get_reviews();
@@ -126,8 +134,38 @@ return(
   <>
 
     <div className="sec-title mb-4">
-      <h2>{dealer.full_name} <span className="sec-title-border"><span></span><span></span><span></span></span></h2>
-      <p>{dealer.address}, {dealer.city}, {dealer.state}, - {dealer.zip}</p>
+      <h2>
+        {dealerLoading ? (
+          <span
+            className="placeholder-glow"
+          >
+            <span className="placeholder rounded-pill"></span>
+          </span>
+        ) : (
+          dealer.full_name
+        )}
+
+        <span className="sec-title-border">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </h2>
+
+      <p>
+        {dealerLoading ? (
+          <span
+            className="placeholder-glow"
+          >
+            <span className="placeholder rounded"></span>
+          </span>
+        ) : (
+          <>
+            {dealer.address}, {dealer.city}, {dealer.state} - {dealer.zip}
+          </>
+        )}
+      </p>
+
     </div>
 
     <div className="login-buttons flex-row justify-content-center">

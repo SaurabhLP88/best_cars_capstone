@@ -6,6 +6,7 @@ import "../Dealers/Dealers.css";
 
 const PostReview = ({dealerId}) => {
   const [dealer, setDealer] = useState({});
+  const [dealerLoading, setDealerLoading] = useState(true);
   const [review, setReview] = useState("");
   const [model, setModel] = useState("");
   const [year, setYear] = useState("");
@@ -47,7 +48,12 @@ const PostReview = ({dealerId}) => {
 
     const get_dealer = async () => {
       try {
+        setDealerLoading(true);
         const res = await fetch(`/djangoapp/dealer/${dealerId}`);
+        if (!res.ok) {
+          setDealerLoading(false);
+          return;
+        }
         const data = await res.json();
 
         if (data.status === 200 && data.dealer.length > 0) {
@@ -55,6 +61,8 @@ const PostReview = ({dealerId}) => {
         }
       } catch (err) {
         console.error("Error loading dealer:", err);
+      } finally {
+        setDealerLoading(false);
       }
     };
 
@@ -76,6 +84,7 @@ const PostReview = ({dealerId}) => {
     };
 
     if (dealerId) {
+      setDealerLoading(true);
       get_dealer();
       get_cars();
     }
@@ -138,7 +147,23 @@ const PostReview = ({dealerId}) => {
       <div className='post-review-contain'>
 
         <div className="sec-title mb-3 pt-3">
-          <h2>{dealer.full_name} <span className="sec-title-border"><span></span><span></span><span></span></span></h2>
+          <h2>
+            {dealerLoading ? (
+              <span
+                className="placeholder-glow"
+              >
+                <span className="placeholder rounded-pill"></span>
+              </span>
+            ) : (
+              dealer.full_name
+            )}
+
+            <span className="sec-title-border">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </h2>
         </div>
 
         <div className="row">

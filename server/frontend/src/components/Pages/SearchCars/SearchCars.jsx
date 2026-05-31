@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 import Header from "../../Common/Header/Header";
 import Banner from "../../Common/Banner/Banner";
@@ -10,30 +10,43 @@ import car_dealership from "../../../assets/images/car_dealership.jpg";
 import "./SearchCars.css";
 
 const SearchCars = () => {
-  const [cars, setCars] = useState([]);
+  const [cars, setCars] = useState([]);  
   const [makes, setMakes] = useState([]);
   const [models, setModels] = useState([]);
   const [dealer, setDealer] = useState({
     full_name: "",
   });
+  const [dealerLoading, setDealerLoading] = useState(true);
   const [message, setMessage] = useState("Loading Cars....");
   const { id } = useParams();
+  const navigate = useNavigate();
   //let dealer_url = `/djangoapp/get_inventory/${id}`;
   //let dealer_url = `/cars/${id}`;
   // const CARS_API = "http://localhost:3030";
   let fetch_url = `/djangoapp/dealer/${id}`;
-  const fetchDealer = async () => {
-    const res = await fetch(fetch_url, {
-      method: "GET",
-    });
-    const retobj = await res.json();
-    if (retobj.status === 200) {
-      let dealer = retobj.dealer;
-      setDealer({
-        full_name: dealer[0].full_name,
+  const fetchDealer = useCallback(async () => {
+    try {
+      setDealerLoading(true);
+
+      const res = await fetch(fetch_url, {
+        method: "GET",
       });
+
+      const retobj = await res.json();
+
+      if (retobj.status === 200) {
+        let dealer = retobj.dealer;
+
+        setDealer({
+          full_name: dealer[0].full_name,
+        });
+      }
+    } catch (err) {
+      console.error("Dealer fetch error:", err);
+    } finally {
+      setDealerLoading(false);
     }
-  };
+  }, [fetch_url]);
   const populateMakesAndModels = (cars) => {
     let tmpmakes = [];
     let tmpmodels = [];
@@ -45,7 +58,7 @@ const SearchCars = () => {
     setModels(Array.from(new Set(tmpmodels)));
   };
 
-  const fetchCars = async () => {
+  const fetchCars = useCallback(async () => {
     const res = await fetch(`/djangoapp/cars/${id}`);
     const data = await res.json();
 
@@ -56,7 +69,7 @@ const SearchCars = () => {
     } else {
       setMessage("Failed to load cars");
     }
-  };
+  }, [id]);
 
   const setCarsmatchingCriteria = async(matching_cars) => {
     let cars = Array.from(matching_cars);
@@ -226,7 +239,7 @@ const SearchCars = () => {
   useEffect(() => {
     fetchCars();
     fetchDealer();
-  }, []);
+  }, [fetchCars, fetchDealer]);
 
   return(
   <>
@@ -242,8 +255,37 @@ const SearchCars = () => {
 
     <div className="search-cars-contain py-5">
       <div className="container">
+
+        <div className="login-buttons flex-row justify-content-start">
+          <button
+            type="button"
+            className="secondary-btn px-3 py-1"
+            onClick={() => navigate("/dealers")}
+          >
+            <i className="fa-solid fa-arrow-left mr-2"></i> Dealers
+          </button>
+        </div>
+
         <div className="sec-title mb-5">
-          <h2>Cars at <strong>{dealer.full_name}</strong>  <span className="sec-title-border"><span></span><span></span><span></span></span></h2>
+          <h2>
+            {dealerLoading ? (
+              <span
+                className="placeholder-glow"
+              >
+                <span className="placeholder rounded-pill"></span>
+              </span>
+            ) : (
+              <>
+                Cars at <strong>{dealer.full_name}</strong>
+              </>
+            )}
+
+            <span className="sec-title-border">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </h2>
         </div>
 
         <div className="row">

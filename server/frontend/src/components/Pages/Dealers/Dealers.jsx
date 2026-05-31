@@ -15,6 +15,7 @@ import video_overview from "../../../assets/images/video-overview.jpg";
 
 const Dealers = () => {
   const [dealersList, setDealersList] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [originalDealers, setOriginalDealers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -70,6 +71,7 @@ const Dealers = () => {
   useEffect(() => {
     const get_dealers = async () => {
       try {
+        setLoading(true);
         const res = await fetch(dealer_url);
         // console.log(res);
 
@@ -98,6 +100,8 @@ const Dealers = () => {
       } catch (err) {
         console.error("Dealers fetch error:", err);
         setDealersList([]);
+      } finally {
+        setLoading(false);
       }
     };
     get_dealers();
@@ -172,7 +176,19 @@ const Dealers = () => {
               <div className="container">
                 <div className="row">
 
-                  {dealersList.length === 0 ? (
+                  {loading ? (
+                    <div className="col-12 text-center py-5">
+                      <div
+                        className="spinner-border text-primary mb-3"
+                        role="status"
+                        style={{ width: "3rem", height: "3rem" }}
+                      >
+                        <span className="sr-only">Loading...</span>
+                      </div>
+
+                      <h4 className="font-weight-bold">Loading dealers...</h4>
+                    </div>
+                  ) : dealersList.length === 0 ? (
                     <div className="col-12">
                       <h3 className='font-weight-bold text-center'>No dealers found</h3>
                     </div>
