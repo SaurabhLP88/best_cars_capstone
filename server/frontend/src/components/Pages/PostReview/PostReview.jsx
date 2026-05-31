@@ -27,11 +27,13 @@ const PostReview = ({dealerId}) => {
 
   const id = dealerId;
   //let dealer_url = `/djangoapp/dealer/${id}`;
-  let review_url = `/djangoapp/add_review`;
+  // let review_url = `/djangoapp/add_review`;
   //let carmodels_url = `/djangoapp/cars/${id}`;
 
   const currentYear = new Date().getFullYear();
   const years = [];
+
+  const API = process.env.REACT_APP_API_URL;
 
   for (let y = currentYear; y >= 2015; y--) {
     years.push(y);
@@ -49,7 +51,7 @@ const PostReview = ({dealerId}) => {
     const get_dealer = async () => {
       try {
         setDealerLoading(true);
-        const res = await fetch(`/djangoapp/dealer/${dealerId}`);
+        const res = await fetch(`${API}/djangoapp/dealer/${dealerId}`);
         if (!res.ok) {
           setDealerLoading(false);
           return;
@@ -68,7 +70,7 @@ const PostReview = ({dealerId}) => {
 
     const get_cars = async () => {
       try {
-        const res = await fetch(`/djangoapp/cars/${dealerId}`);
+        const res = await fetch(`${API}/djangoapp/cars/${dealerId}`);
         const cars = await res.json();
 
         const uniqueCars = Array.from(
@@ -89,7 +91,7 @@ const PostReview = ({dealerId}) => {
       get_cars();
     }
 
-  }, [dealerId]);
+  }, [dealerId, API]);
 
   const postreview = async ()=>{
     let name = sessionStorage.getItem("firstname")+" "+sessionStorage.getItem("lastname");
@@ -118,7 +120,7 @@ const PostReview = ({dealerId}) => {
     });
 
     console.log(jsoninput);
-    const res = await fetch(review_url, {
+    const res = await fetch(`${API}/djangoapp/add_review`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

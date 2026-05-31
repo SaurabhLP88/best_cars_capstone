@@ -20,10 +20,12 @@ const SearchCars = () => {
   const [message, setMessage] = useState("Loading Cars....");
   const { id } = useParams();
   const navigate = useNavigate();
+  const API = process.env.REACT_APP_API_URL;
+
   //let dealer_url = `/djangoapp/get_inventory/${id}`;
   //let dealer_url = `/cars/${id}`;
   // const CARS_API = "http://localhost:3030";
-  let fetch_url = `/djangoapp/dealer/${id}`;
+  let fetch_url = `${API}/djangoapp/dealer/${id}`;
   const fetchDealer = useCallback(async () => {
     try {
       setDealerLoading(true);
@@ -59,7 +61,7 @@ const SearchCars = () => {
   };
 
   const fetchCars = useCallback(async () => {
-    const res = await fetch(`/djangoapp/cars/${id}`);
+    const res = await fetch(`${API}/djangoapp/cars/${id}`);
     const data = await res.json();
 
     if (Array.isArray(data)) {
@@ -69,7 +71,7 @@ const SearchCars = () => {
     } else {
       setMessage("Failed to load cars");
     }
-  }, [id]);
+  }, [id, API]);
 
   const setCarsmatchingCriteria = async(matching_cars) => {
     let cars = Array.from(matching_cars);
@@ -152,7 +154,7 @@ const SearchCars = () => {
         "Content-Type": "application/json",
       },
     });*/
-    const res = await fetch(`/djangoapp/carsbymake/${id}/${make}`);
+    const res = await fetch(`${API}/djangoapp/carsbymake/${id}/${make}`);
 
     const data = await res.json();
     if (Array.isArray(data)) {
@@ -169,7 +171,7 @@ const SearchCars = () => {
         "Content-Type": "application/json",
       },
     });*/
-    const res = await fetch(`/djangoapp/carsbymodel/${id}/${model}`);
+    const res = await fetch(`${API}/djangoapp/carsbymodel/${id}/${model}`);
     const data = await res.json();
     if (Array.isArray(data)) {
       setCarsmatchingCriteria(data);
@@ -187,7 +189,7 @@ const SearchCars = () => {
         "Content-Type": "application/json",
       },
     });*/
-    const res = await fetch(`/djangoapp/carsbyyear/${id}/${year}`);
+    const res = await fetch(`${API}/djangoapp/carsbyyear/${id}/${year}`);
     const data = await res.json();
     if (Array.isArray(data)) {
       setCarsmatchingCriteria(data);
@@ -205,7 +207,7 @@ const SearchCars = () => {
         "Content-Type": "application/json",
       },
     });*/
-    const res = await fetch(`/djangoapp/carsbymaxmileage/${id}/${mileage}`);
+    const res = await fetch(`${API}/djangoapp/carsbymaxmileage/${id}/${mileage}`);
     const data = await res.json();
     if (Array.isArray(data)) {
       setCarsmatchingCriteria(data);
@@ -223,7 +225,7 @@ const SearchCars = () => {
         "Content-Type": "application/json",
       },
     });*/
-    const res = await fetch(`/djangoapp/carsbyprice/${id}/${price}`);
+    const res = await fetch(`${API}/djangoapp/carsbyprice/${id}/${price}`);
     const data = await res.json();
     if (Array.isArray(data)) {
       setCarsmatchingCriteria(data);
