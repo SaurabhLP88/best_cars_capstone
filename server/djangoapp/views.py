@@ -17,15 +17,49 @@ logger = logging.getLogger(__name__)
 
 @csrf_exempt
 def login_user(request):
-    data = json.loads(request.body)
-    user = authenticate(
-        username=data["userName"],
-        password=data["password"]
-    )
-    if user:
-        login(request, user)
-        return JsonResponse({"userName": data["userName"], "status": "Authenticated"})
-    return JsonResponse({"userName": data["userName"]})
+    if request.method != "POST":
+        return JsonResponse(
+            {"error": "Invalid request method"},
+            status=405
+        )
+    try:
+
+        data = json.loads(request.body)
+
+        username = data.get("userName", "").strip()
+        password = data.get("password", "").strip()
+
+        if not username or not password:
+            return JsonResponse(
+                {"error": "Username and password required"},
+                status=400
+            )
+
+        user = authenticate(
+            username=username,
+            password=password
+        )
+
+        if user is not None:
+
+            login(request, user)
+
+            return JsonResponse({
+                "userName": username,
+                "status": "Authenticated"
+            })
+
+        return JsonResponse({
+            "error": "Invalid username or password"
+        }, status=401)
+
+    except Exception as err:
+
+        logger.exception("Login error")
+
+        return JsonResponse({
+            "error": "Server error"
+        }, status=500)
 
 
 def logout_request(request):
@@ -35,6 +69,11 @@ def logout_request(request):
 
 @csrf_exempt
 def registration(request):
+    if request.method != "POST":
+        return JsonResponse(
+            {"error": "Invalid request method"},
+            status=405
+        )
     data = json.loads(request.body)
     if User.objects.filter(username=data["userName"]).exists():
         return JsonResponse({"error": "Already Registered"})
