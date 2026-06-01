@@ -13,4 +13,4 @@ COPY . .
 
 RUN python -c "import os; print(os.listdir('/app'))"
 
-CMD ["sh", "-c", "gunicorn djangoproj.wsgi:application --bind 0.0.0.0:$PORT"]
+CMD ["sh", "-c", "python manage.py migrate && gunicorn djangoproj.wsgi:application --bind 0.0.0.0:$PORT"]

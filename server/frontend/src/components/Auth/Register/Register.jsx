@@ -88,8 +88,12 @@ const Register = () => {
       } else {
         setServerError("Registration failed. Please try again.");
       }
-    } catch {
-      setServerError("Network error. Please try again.");
+    } catch (err) {
+      console.error("Register error:", err);
+
+      setServerError(
+        "Server error occurred. Please try again later."
+      );
     } finally {
       setLoading(false);
     }
