@@ -77,7 +77,11 @@ const Login = () => {
         setServerError("Invalid username or password");
       }
     } catch (err) {
-      setServerError("Network error. Please try again.");
+      console.error("Login error:", err);
+
+      setServerError(
+        "Server error occurred. Please try again later."
+      );
     } finally {
       setLoading(false);
     }
