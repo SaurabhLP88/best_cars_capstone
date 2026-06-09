@@ -12,8 +12,7 @@ import Header from "../../Common/Header/Header";
 import Footer from "../../Common/Footer/Footer";
 import ScreenshotSlider from "../../Sections/ScreenshotSlider/ScreenshotSlider";
 import Testimonial from "../../Sections/Testimonial/Testimonial";
-import VideoBackground from "../../Sections/VideoBackground/VideoBackground";
-
+//import VideoBackground from "../../Sections/VideoBackground/VideoBackground";
 //import bgVideo from "../../../assets/videos/night_driving_01.mp4";
 
 
@@ -46,11 +45,72 @@ import team1 from "../../../assets/images/team/team1.jpg";
 import team2 from "../../../assets/images/team/team2.jpg";
 import team3 from "../../../assets/images/team/team3.jpg";
 import team4 from "../../../assets/images/team/team4.jpg";
-import blog1 from "../../../assets/images/blog/blog1.jpg";
-import blog2 from "../../../assets/images/blog/blog2.jpg";
-import blog3 from "../../../assets/images/blog/blog3.jpg";
+
+import blog1 from "../../../assets/images/blog/blog4.jpg";
+import blog2 from "../../../assets/images/blog/blog5.jpg";
+import blog3 from "../../../assets/images/blog/blog6.jpg";
 
 const slides = [audiQ5, kiaCadenza, kiaNiro, kiaStinger, nissanPatrol];
+
+const cars = [
+  {
+    id: 1,
+    name: "Kia Stinger",
+    image: kiaStinger,
+    price: "42.5",
+    fuel: "Petrol",
+    transmission: "Automatic",
+  },
+  {
+    id: 2,
+    name: "Nissan Patrol",
+    image: nissanPatrol,
+    price: "85.0",
+    fuel: "Diesel",
+    transmission: "Automatic",
+  },
+  {
+    id: 3,
+    name: "Audi Q5",
+    image: audiQ5,
+    price: "65.0",
+    fuel: "Petrol",
+    transmission: "Automatic",
+  },
+];
+
+const blogs = [
+  {
+    id: 1,
+    title: "Top 10 Family SUVs to Buy in 2026",
+    author: "Saurabh",
+    comments: 12,
+    date: "05 Jun 2026",
+    image: blog1,
+    description:
+      "Discover the best family SUVs offering comfort, safety, and advanced features for everyday driving and long road trips.",
+  },
+  {
+    id: 2,
+    title: "Electric Cars vs Hybrid Cars: Which One Wins?",
+    author: "Saurabh",
+    comments: 8,
+    date: "02 Jun 2026",
+    image: blog2,
+    description:
+      "Compare electric and hybrid vehicles in terms of cost, performance, maintenance, and environmental impact.",
+  },
+  {
+    id: 3,
+    title: "5 Essential Tips Before Buying a Used Car",
+    author: "Saurabh",
+    comments: 15,
+    date: "28 May 2026",
+    image: blog3,
+    description:
+      "Learn how to inspect a used vehicle, verify documents, and avoid common mistakes before making your purchase.",
+  },
+];
 
 const Home = () => {
 
@@ -415,79 +475,51 @@ const Home = () => {
               </div>
             </div>
             <div className="row">
-              <div className="col-lg-4">
-                <div className="single-pricing-box">
-                  <div className="pricing-top">
-                    <h4 className="mt-0 mb-3">Honda Amaze 4G</h4>
-                    <figure className="m-0">
-                      <img src={blog1} alt="car" />
-                    </figure>
-                  </div>
-                  <div className="price">
-                    <h1><span>₹</span>7.5</h1>
-                    <p>*(Ex-showroom price)</p>
-                  </div>
-                  <div className="price-details">
-                    <ul>
-                      <li className="d-flex justify-content-between">
-                        <span>Powertrain</span>
-                        <span className="font-weight-bold text-blue1">Petrol <i class="fa-solid fa-gas-pump"></i></span>
-                      </li>
-                      <li className="d-flex justify-content-between">
-                        <span>Transmission</span>
-                        <span className="font-weight-bold text-blue1">Manual <i class="fa-solid fa-code-branch"></i></span>
-                      </li>
-                    </ul>
-                    <a className="appao-btn" href="#">Explore More</a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4">
-                <div className="single-pricing-box">
-                  <div className="pricing-top">
-                    <h4>Pro</h4>
-                    <p>Suitable for Freelancer</p>
-                  </div>
-                  <div className="price">
-                    <h1><span>$</span>199</h1>
-                    <p>Basic</p>
-                  </div>
-                  <div className="price-details">
-                    <ul>
-                      <li>Email Marketing</li>
-                      <li>Email Builder</li>
-                      <li>Client Testing</li>
-                      <li>Multiple Email Support</li>
-                      <li>Email Read Receipent</li>
-                      <li>2 User Free</li>
-                    </ul>
-                    <a className="appao-btn" href="#">Order Now</a>
+              {cars.map((car) => (
+                <div className="col-lg-4" key={car.id}>
+                  <div className="single-pricing-box">
+                    <div className="pricing-top">
+                      <h4 className="mt-0 mb-3">{car.name}</h4>
+
+                      <figure className="m-0">
+                        <img src={car.image} alt={car.name} />
+                      </figure>
+                    </div>
+
+                    <div className="price">
+                      <h1>
+                        <span>₹</span>
+                        {car.price}
+                      </h1>
+                      <p>*(Ex-showroom price)</p>
+                    </div>
+
+                    <div className="price-details">
+                      <ul>
+                        <li className="d-flex justify-content-between">
+                          <span>Powertrain</span>
+                          <span className="font-weight-bold text-blue1">
+                            {car.fuel}{" "}
+                            <i className="fa-solid fa-gas-pump"></i>
+                          </span>
+                        </li>
+
+                        <li className="d-flex justify-content-between">
+                          <span>Transmission</span>
+                          <span className="font-weight-bold text-blue1">
+                            {car.transmission}{" "}
+                            <i className="fa-solid fa-code-branch"></i>
+                          </span>
+                        </li>
+                      </ul>
+
+                      <a className="appao-btn" href="#">
+                        Explore More
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-lg-4">
-                <div className="single-pricing-box">
-                  <div className="pricing-top">
-                    <h4>Ultimate</h4>
-                    <p>Suitable for Freelancer</p>
-                  </div>
-                  <div className="price">
-                    <h1><span>$</span>299</h1>
-                    <p>Basic</p>
-                  </div>
-                  <div className="price-details">
-                    <ul>
-                      <li>Email Marketing</li>
-                      <li>Email Builder</li>
-                      <li>Client Testing</li>
-                      <li>Multiple Email Support</li>
-                      <li>Email Read Receipent</li>
-                      <li>2 User Free</li>
-                    </ul>
-                    <a className="appao-btn" href="#">Order Now</a>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </section>
@@ -507,68 +539,6 @@ const Home = () => {
           </div>
           
           <Testimonial />
-
-              {/*
-              <div className="row">
-            <div className="col-lg-8 offset-lg-2">
-              <div className="testimonial-wrap">
-                <div className="single-testimonial-box">
-                  <div className="author-img">
-                    <img src={author1} alt="author" />
-                  </div>
-                  <h5>Mary Balogh</h5>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi  aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in </p>
-                  <div className="author-rating">
-                    <i className="icofont icofont-star"></i>
-                    <i className="icofont icofont-star"></i>
-                    <i className="icofont icofont-star"></i>
-                    <i className="icofont icofont-star"></i>
-                    <i className="icofont icofont-star"></i>
-                  </div>
-                </div>
-                <div className="single-testimonial-box">
-                  <div className="author-img">
-                    <img src={author2} alt="author" />
-                  </div>
-                  <h5>Mary Balogh</h5>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi  aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in </p>
-                  <div className="author-rating">
-                    <i className="icofont icofont-star"></i>
-                    <i className="icofont icofont-star"></i>
-                    <i className="icofont icofont-star"></i>
-                    <i className="icofont icofont-star"></i>
-                    <i className="icofont icofont-star"></i>
-                  </div>
-                </div>
-                <div className="single-testimonial-box">
-                  <div className="author-img">
-                    <img src={author2} alt="author" />
-                  </div>
-                  <h5>Mary Balogh</h5>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi  aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in </p>
-                  <div className="author-rating">
-                    <i className="icofont icofont-star"></i>
-                    <i className="icofont icofont-star"></i>
-                    <i className="icofont icofont-star"></i>
-                    <i className="icofont icofont-star"></i>
-                    <i className="icofont icofont-star"></i>
-                  </div>
-                </div>
-              </div>
-              <div className="testimonial-thumb">
-                <div className="thumb-prev">
-                  <div className="author-img">
-                    <img src={author2} alt="author" />
-                  </div>
-                </div>
-                <div className="thumb-next">
-                  <div className="author-img">
-                    <img src={author2} alt="author" />
-                  </div>
-                </div>
-                </div>
-          </div>
-              */}
             
         </div>
       </section>
@@ -796,54 +766,42 @@ const Home = () => {
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-4 col-md-6">
+            {blogs.map((blog) => (
+              <div className="col-lg-4 col-md-6" key={blog.id}>
                 <div className="single-post">
-                <div className="post-thumbnail">
-                  <a href="blog.html"><img src={blog1} alt="blog" /></a>
-                </div>
-                <div className="post-details">
-                  <div className="post-author">
-                    <a href="blog.html"><i className="icofont icofont-user"></i>John</a>
-                    <a href="blog.html"><i className="icofont icofont-speech-comments"></i>Comments</a>
-                    <a href="blog.html"><i className="icofont icofont-calendar"></i>21 Feb 2018</a>
+                  <div className="post-thumbnail">
+                    <a href="/blogs">
+                      <img src={blog.image} alt={blog.title} />
+                    </a>
                   </div>
-                  <h4 className="post-title"><a href="blog.html">Lorem ipsum dolor sit</a></h4>
-                  <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad</p>
+
+                  <div className="post-details">
+                    <div className="post-author">
+                      <a href="/blogs">
+                        <i className="icofont icofont-user"></i>
+                        {blog.author}
+                      </a>
+
+                      <a href="/blogs">
+                        <i className="icofont icofont-speech-comments"></i>
+                        {blog.comments} Comments
+                      </a>
+
+                      <a href="/blogs">
+                        <i className="icofont icofont-calendar"></i>
+                        {blog.date}
+                      </a>
+                    </div>
+
+                    <h4 className="post-title">
+                      <a href="/blogs">{blog.title}</a>
+                    </h4>
+
+                    <p>{blog.description}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col-lg-4 col-md-6">
-                <div className="single-post">
-                <div className="post-thumbnail">
-                  <a href="blog.html"><img src={blog2} alt="blog" /></a>
-                </div>
-                <div className="post-details">
-                  <div className="post-author">
-                    <a href="blog.html"><i className="icofont icofont-user"></i>John</a>
-                    <a href="blog.html"><i className="icofont icofont-speech-comments"></i>Comments</a>
-                    <a href="blog.html"><i className="icofont icofont-calendar"></i>21 Feb 2018</a>
-                  </div>
-                  <h4 className="post-title"><a href="blog.html">Lorem ipsum dolor sit</a></h4>
-                  <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad</p>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4 d-md-none d-lg-block">
-                <div className="single-post">
-                <div className="post-thumbnail">
-                  <a href="blog.html"><img src={blog3} alt="blog" /></a>
-                </div>
-                <div className="post-details">
-                  <div className="post-author">
-                    <a href="blog.html"><i className="icofont icofont-user"></i>John</a>
-                    <a href="blog.html"><i className="icofont icofont-speech-comments"></i>Comments</a>
-                    <a href="blog.html"><i className="icofont icofont-calendar"></i>21 Feb 2018</a>
-                  </div>
-                  <h4 className="post-title"><a href="blog.html">Lorem ipsum dolor sit</a></h4>
-                  <p>Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad</p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

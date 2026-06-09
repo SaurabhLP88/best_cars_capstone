@@ -10,6 +10,7 @@ import "./Testimonial.css";
 
 import author1 from "../../../assets/images/author/author1.jpg";
 import author2 from "../../../assets/images/author/author2.jpg";
+import author3 from "../../../assets/images/author/author3.jpg";
 
 const Testimonial = () => {
   const [current, setCurrent] = useState(0);
@@ -29,7 +30,7 @@ const Testimonial = () => {
       rating: 4,
     },
     {
-      img: author2,
+      img: author3,
       name: "Alex Smith",
       text: "The reviews and ratings on BestCars helped me shortlist the best dealer in my city. The experience was smooth, and I felt confident throughout the process. I ended up with a great deal and a fantastic car. BestCars is now my go-to for any future car purchases!",
       rating: 4.5,

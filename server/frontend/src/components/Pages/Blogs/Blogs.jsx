@@ -3,58 +3,61 @@ import Banner from "../../Common/Banner/Banner";
 import Footer from "../../Common/Footer/Footer";
 
 import bannerBg from "../../../assets/images/blog-banner.jpg";
-import blogImg1 from "../../../assets/images/blog/blog1.jpg";
-import blogImg2 from "../../../assets/images/blog/blog2.jpg";
-import blogImg3 from "../../../assets/images/blog/blog3.jpg";
+import blogImg1 from "../../../assets/images/blog/blog4.jpg";
+import blogImg2 from "../../../assets/images/blog/blog5.jpg";
+import blogImg3 from "../../../assets/images/blog/blog6.jpg";
+import blogImg4 from "../../../assets/images/blog/blog7.jpg";
+import blogImg5 from "../../../assets/images/blog/blog8.jpg";
+import blogImg6 from "../../../assets/images/blog/blog9.jpg";
 
 const blogData = [
   {
     image: blogImg1,
-    author: "John",
-    date: "21 Feb 2018",
-    title: "Lorem ipsum dolor sit",
+    author: "Saurabh",
+    date: "02 Jun 2026",
+    title: "Top 5 Sports Sedans Worth Buying in 2026",
     description:
-      "Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "From the Kia Stinger to the BMW M340i, discover the best sports sedans that combine performance, comfort, and everyday practicality.",
   },
   {
     image: blogImg2,
-    author: "John",
-    date: "21 Feb 2018",
-    title: "Another blog title",
+    author: "Saurabh",
+    date: "28 May 2026",
+    title: "Electric vs Hybrid Cars: Which Should You Choose?",
     description:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+      "Compare EVs and hybrid vehicles based on running costs, maintenance, charging convenience, and long-term ownership benefits.",
   },
   {
     image: blogImg3,
-    author: "John",
-    date: "21 Feb 2018",
-    title: "Third blog post",
+    author: "Saurabh",
+    date: "24 May 2026",
+    title: "10 Things to Check Before Buying a Used Car",
     description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse.",
+      "Learn how to inspect vehicle history, mileage, service records, and mechanical condition before making a purchase decision.",
   },
   {
-    image: blogImg1,
-    author: "John",
-    date: "21 Feb 2018",
-    title: "Lorem ipsum dolor sit",
+    image: blogImg4,
+    author: "Saurabh",
+    date: "20 May 2026",
+    title: "Best Family SUVs for Long Road Trips",
     description:
-      "Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Explore spacious and feature-packed SUVs that offer comfort, safety, and fuel efficiency for family adventures.",
   },
   {
-    image: blogImg2,
-    author: "John",
-    date: "21 Feb 2018",
-    title: "Another blog title",
+    image: blogImg5,
+    author: "Saurabh",
+    date: "15 May 2026",
+    title: "How Regular Maintenance Extends Your Car's Life",
     description:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+      "Simple maintenance habits such as oil changes, tire rotations, and brake inspections can save thousands in repair costs.",
   },
   {
-    image: blogImg3,
-    author: "John",
-    date: "21 Feb 2018",
-    title: "Third blog post",
+    image: blogImg6,
+    author: "Saurabh",
+    date: "10 May 2026",
+    title: "Manual vs Automatic Transmission: Pros and Cons",
     description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse.",
+      "Understand the differences between manual and automatic gearboxes to choose the right driving experience for your needs.",
   },
 ];
 
